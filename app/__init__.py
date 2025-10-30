@@ -1,39 +1,27 @@
 import sqlite3
-from flask import Flask, render_template, url_for, redirect, session, send_from_directory, request, g
+from flask import Flask
+from flask import (
+    Blueprint, g, redirect, render_template, request, session, url_for
+)
 import datetime
 
 APP = Flask(__name__)
-DATABASE = 'databases/bomberos.db'
 
-def Get_DB():
-    DB = getattr(g, '_database', None)
+def Create_APP():
+    APP.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE='databases/bomberos.db',
+        PERMANENT_SESSION_LIFETIME=datetime.timedelta(days=7)
+    )
 
-    if DB is None:
-        DB = g._database = sqlite3.connect(DATABASE)
+    from scripts import db
+    db.Init_APP(APP)
 
-    return DB
+    from scripts import index
+    APP.register_blueprint(index.bp)
 
-@APP.teardown_appcontext
-def Close_DB(exception):
-    DB = getattr(g, '_database', None)
-
-    if DB is not None:
-        DB.close()
-
-def Init_DB(reset=False):
-    with APP.app_context():
-        DB = Get_DB()
-
-        if reset or (DB is None):
-            with APP.open_resource('schema.sql', mode='r', encoding='UTF-8') as f:
-                DB.cursor().executescript(f.read())
-
-            DB.commit()
-
-with APP.app_context():
-    Init_DB(True) # Cambiar a True para reiniciar la base de datos
+    return APP
 
 if __name__ == '__main__':
-    APP.config['SECRET_KEY'] = 'bdpq'
-    APP.config['PERMANENT_SESSION_LIFETIME'] =  datetime.timedelta(minutes=30)
-    APP.run(debug=True)
+    app = Create_APP()
+    app.run(debug=True)

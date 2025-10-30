@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-bg: #BBB;
+    --color-fg: #D11;
+    --color-texto: #111;
+}
+
+html {
+    background-color: var(--color-bg);
+    min-height: 100dvh;
+}
