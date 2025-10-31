@@ -1,9 +1,10 @@
 import sqlite3
+import os
+import datetime
 from flask import Flask
 from flask import (
-    Blueprint, g, redirect, render_template, request, session, url_for
+    Blueprint, g, redirect, render_template, request, session, url_for, send_from_directory
 )
-import datetime
 
 APP = Flask(__name__)
 
@@ -17,11 +18,20 @@ def Create_APP():
     from scripts import db
     db.Init_APP(APP)
 
-    from scripts import index
-    APP.register_blueprint(index.bp)
+    from blueprints import bp_index, bp_personal
+    APP.register_blueprint(bp_index.bp)
+    APP.register_blueprint(bp_personal.bp)
 
     return APP
 
+@APP.route('/favicon.svg')
+def favicon():
+    return send_from_directory(os.path.join(APP.root_path, 'static'), 'logo.svg',)
+
 if __name__ == '__main__':
     app = Create_APP()
-    app.run(debug=True)
+    
+    app.run(
+        debug=True,
+        host='0.0.0.0',
+    )

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
+{% endblock %}
+
+{% block center %}
+    <table>
+        <thead>
+            <tr>
+                <th>Legajo</th>
+                <th>DNI</th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
+                <th>Apellido, Nombre</th>
+                <th>Teléfono</th>
+                <th>Nacimiento</th>
+                <th>Provincia</th>
+                <th>Lugar</th>
+                <th>Permisos</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for Bombero in personal %}
+                <tr>
+                    <td>{{ Bombero.legajo }}</td>
+                    <td>{{ Bombero.dni }}</td>
+                    <td>{{ Bombero.username }}</td>
+                    <td>{{ Bombero.password }}</td>
+                    <td>{{ Bombero.apellido_nombre }}</td>
+                    <td>{{ Bombero.telefono }}</td>
+                    <td>{{ Bombero.fecha_nacimiento }}</td>
+                    <td>{{ Bombero.provincia }}</td>
+                    <td>{{ Bombero.lugar }}</td>
+                    <td>{{ Bombero.permisos }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block right %}
+    <p>
+        Hola
+        Mundo
+        !
+    </p>
+{% endblock %}

@@ -9,13 +9,14 @@ DROP TABLE IF EXISTS asistencias_det;
 CREATE TABLE personal (
     legajo           TEXT    PRIMARY KEY UNIQUE,
     dni              INTEGER NOT NULL UNIQUE,
-    user             TEXT    NOT NULL UNIQUE,
-    pass             TEXT    NOT NULL,
+    username         TEXT    NOT NULL UNIQUE,
+    password         TEXT    NOT NULL,
     apellido_nombre  TEXT    NOT NULL,
-    telefono         INTEGER NOT NULL,
+    telefono         INTEGER,
     fecha_nacimiento TEXT    NOT NULL,
-    provincia        TEXT NOT NULL,
-    lugar            TEXT NOT NULL
+    provincia        TEXT    NOT NULL,
+    lugar            TEXT    NOT NULL,
+    permisos         INTEGER NOT NULL DEFAULT 0
 );
 
 -- Tabla unidades
@@ -64,11 +65,16 @@ CREATE TABLE asistencias_det (
 );
 
 -- Indices
+CREATE INDEX idx_personal_user ON personal(username);
+CREATE INDEX idx_personal_legajo ON personal(legajo);
 CREATE INDEX idx_personal_dni ON personal(dni);
-CREATE INDEX idx_personal_user ON personal(user);
 CREATE INDEX idx_conductas_legajo ON conductas(legajo);
 CREATE INDEX idx_asistencias_cab_evento ON asistencias_cab(id_evento);
 CREATE INDEX idx_asistencias_cab_responsable ON asistencias_cab(legajo_responsable);
 CREATE INDEX idx_asistencias_det_cab ON asistencias_det(id_cab);
 CREATE INDEX idx_asistencias_det_legajo ON asistencias_det(legajo);
 CREATE INDEX idx_asistencias_det_unidad ON asistencias_det(id_unidad);
+
+-- Datos iniciales
+INSERT INTO personal (legajo, dni, username, password, apellido_nombre, telefono, fecha_nacimiento, provincia, lugar, permisos) VALUES
+('033-072-R7', 43767657, 'gfprimo', 'admin', 'Primo, Gianfranco', NULL, '2001-12-05', 'Santa Fe', 'Totoras', 1);

@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            Bomberos / {% block titulo %}{% endblock %}
+            Bomberos / {{ session['user'] }}
         </title>
     {% endblock %}
 
@@ -13,12 +13,53 @@
 </head>
 
 <body>
-    <aside>
-        {% block aside %}{% endblock %}
-    </aside>
+    <div id="top">
+        <h1><a href="{{ url_for('index.Index') }}">Bomberos Voluntarios de Totoras</a></h1>
 
-    <main>
-        {% block main %}{% endblock %}
-    </main>
+        <form action="{{ url_for('index.Logout') }}" method="post">
+            <input type="submit" value="❌">
+        </form>
+    </div>
+
+    <div id="middle">
+        <div id="left">
+            <div id="nav">
+                <details open>
+                    <summary>📑 Asistencias</summary>
+                    <a href="">📝 Cargar Planilla</a>
+                    <a href="">📄 Ver Planillas</a>
+                </details>
+
+                <details open>
+                    <summary>🗃️ Calificaciones</summary>
+                    <a href="{{ url_for('personal.Personal') }}">📅 Mensual</a>
+                    <a href="">📆 Semestral</a>
+                    <a href="">🗓️ Anual</a>
+                    <a href="">🗂️ Histórico</a>
+                </details>
+    
+                <details open>
+                    <summary>📚 Datos</summary>
+                    <a href="">📗 Personal</a>
+                    <a href="">📕 Unidades</a>
+                    <a href="">📘 Eventos</a>
+                </details>
+            </div>
+    
+            {% block left %}{% endblock %}
+        </div>
+    
+        <div id="center">
+            {% block center %}{% endblock %}
+        </div>
+    
+        <div id="right">
+            {% block right %}{% endblock %}
+        </div>
+    </div>
+
+    <div id="bottom">
+        <h2>IES №48, Martín Menna Castells © 2025</h2>
+    </div>
 </body>
 </html>

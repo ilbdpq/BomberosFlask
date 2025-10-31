@@ -1,0 +1,19 @@
+:root {
+    --color-bg: #CA670277;
+}
+
+table {
+    width: 100%;
+    background-color: var(--color-bg);
+    padding: 0.5rem;
+    border-collapse: collapse;
+
+    tbody {
+        tr:nth-child(even) {
+            background-color: color-mix(in srgb, var(--color-bg), transparent 10%);
+        }
+        tr:nth-child(odd) {
+            background-color: color-mix(in srgb, var(--color-bg) 10%, transparent 10%);
+        }
+    }
+}

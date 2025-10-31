@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Bomberos / Iniciar sesión
+    </title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <div id="top">
+        <h1><a href="{{ url_for('index.Index') }}">Bomberos Voluntarios de Totoras</a></h1>
+    </div>
+
+    <div id="middle">
+        <div id="left">
+            {% block left %}{% endblock %}
+        </div>
+    
+        <div id="center">
+            {% block center %}{% endblock %}
+        </div>
+    
+        <div id="right">
+            {% block right %}{% endblock %}
+        </div>
+    </div>
+
+    <div id="bottom">
+        <h2>IES №48, Martín Menna Castells © 2025</h2>
+    </div>
+</body>
+</html>

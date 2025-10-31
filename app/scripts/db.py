@@ -1,4 +1,5 @@
 import sqlite3
+import click
 from flask import g, current_app as APP
 
 DATABASE = 'databases/bomberos.db'
@@ -28,5 +29,14 @@ def Init_DB(reset=False):
 
         DB.commit()
 
+@click.command('init-db')
+def Init_DB_Command():
+    '''Inicializa la base de datos.'''
+    
+    Init_DB(True) # Forzar reinicio de la base de datos
+    
+    click.echo('Base de datos inicializada.')
+
 def Init_APP(app):
     app.teardown_appcontext(Close_DB)
+    app.cli.add_command(Init_DB_Command)
