@@ -77,4 +77,8 @@ CREATE INDEX idx_asistencias_det_unidad ON asistencias_det(id_unidad);
 
 -- Datos iniciales
 INSERT INTO personal (legajo, dni, username, password, apellido_nombre, telefono, fecha_nacimiento, provincia, lugar, permisos) VALUES
-('033-072-R7', 43767657, 'gfprimo', 'admin', 'Primo, Gianfranco', NULL, '2001-12-05', 'Santa Fe', 'Totoras', 1);
+('033-072-R7', 43767657, 'gfprimo', 'admin', 'Primo, Gianfranco', NULL, '2001-12-05', 'Santa Fe', 'Totoras', 2),
+('033-040-R7', 29260710, 'gvignatti', 'admin', 'Vignatti, Giuliano', NULL, '1994-06-16', 'Santa Fe', 'Totoras', 2),
+('033-042-R7', 26112825, 'pelli', 'user', 'Valor, Juan Manual', NULL, '1982-09-26', 'Santa Fe', 'Totoras', 1),
+('033-043-R7', 36467096, 'kokan', 'user', 'Nocioni, Franco', NULL, '1977-08-25', 'Santa Fe', 'Totoras', 1),
+('033-035-R7', 25205874, 'nocionifranco', 'user', 'Almirón, Abel', NULL, '1992-11-07', 'Santa Fe', 'Totoras', 1);

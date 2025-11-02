@@ -2,6 +2,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 {% endblock %}
 
 {% block center %}
@@ -17,13 +18,13 @@
                 <th>Nacimiento</th>
                 <th>Provincia</th>
                 <th>Lugar</th>
-                <th>Permisos</th>
+                <th style="display: none;">Permisos</th>
             </tr>
         </thead>
 
         <tbody>
             {% for Bombero in personal %}
-                <tr>
+                <tr onclick="tr_Seleccionar(this)">
                     <td>{{ Bombero.legajo }}</td>
                     <td>{{ Bombero.dni }}</td>
                     <td>{{ Bombero.username }}</td>
@@ -33,7 +34,7 @@
                     <td>{{ Bombero.fecha_nacimiento }}</td>
                     <td>{{ Bombero.provincia }}</td>
                     <td>{{ Bombero.lugar }}</td>
-                    <td>{{ Bombero.permisos }}</td>
+                    <td style="display: none;">{{ Bombero.permisos }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -41,9 +42,61 @@
 {% endblock %}
 
 {% block right %}
-    <p>
-        Hola
-        Mundo
-        !
-    </p>
+    <form id="abm_Bombero" action="{{ url_for('personal.Subir') }}" method="post">
+        <fieldset>
+            <legend>Legajo</legend>
+            <input type="text" name="legajo" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>DNI</legend>
+            <input type="text" name="dni" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Usuario</legend>
+            <input type="text" name="username" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Contraseña</legend>
+            <input type="text" name="password" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Apellido, Nombre</legend>
+            <input type="text" name="apellido_nombre" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Teléfono</legend>
+            <input type="text" name="telefono" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Nacimiento</legend>
+            <input type="text" name="fecha_nacimiento" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Provincia</legend>
+            <input type="text" name="provincia" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Lugar</legend>
+            <input type="text" name="lugar" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Permisos</legend>
+            <input type="text" name="permisos" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Acciones</legend>
+            <input type="submit" value="Guardar">
+            <input type="button" value="Limpiar" onclick="form_Limpiar()">
+        </fieldset>
+    </form>
 {% endblock %}

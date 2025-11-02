@@ -82,7 +82,7 @@ class Bombero:
             permisos=bombero_data['permisos']
         )
         
-    def Get_Personal_List():
+    def Get_Bomberos():
         DB = Get_DB()
         bomberos_data = DB.execute(
             'SELECT * FROM personal'
@@ -106,3 +106,19 @@ class Bombero:
             bomberos_list.append(bombero)
         
         return bomberos_list
+
+    def Add(self):
+        DB = Get_DB()
+        DB.execute(
+            'INSERT INTO personal (legajo, dni, username, password, apellido_nombre, telefono, fecha_nacimiento, provincia, lugar, permisos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            (self.legajo, self.dni, self.username, self.password, self.apellido_nombre, self.telefono, self.fecha_nacimiento, self.provincia, self.lugar, self.permisos)
+        )
+        DB.commit()
+
+    def Set(self):
+        DB = Get_DB()
+        DB.execute(
+            'UPDATE personal SET dni = ?, username = ?, password = ?, apellido_nombre = ?, telefono = ?, fecha_nacimiento = ?, provincia = ?, lugar = ?, permisos = ? WHERE legajo = ?',
+            (self.dni, self.username, self.password, self.apellido_nombre, self.telefono, self.fecha_nacimiento, self.provincia, self.lugar, self.permisos, self.legajo)
+        )
+        DB.commit()

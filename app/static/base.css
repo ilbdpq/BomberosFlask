@@ -20,10 +20,10 @@
     --color-bg-left: #BB3E0322;
     
     --color-fg-center: #CA6702;
-    --color-bg-center: #CA670222;
+    --color-bg-center: #CA6702;
 
     --color-fg-right: #EE9B00;
-    --color-bg-right: #EE9B0022;
+    --color-bg-right: #EE9B00;
 }
 
 html {
@@ -66,16 +66,21 @@ body {
         color: inherit;
     }
 
-    input {
-        font-size: 1.25rem;
-        margin-right: 1rem;
-        border: none;
-        background-color: inherit;
+    form {
+        background-color: transparent;
+
+        input {
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            border: none;
+            background-color: transparent;
+        }
+        
+        input:hover {
+            cursor: pointer;
+        }
     }
 
-    input:hover {
-        cursor: pointer;
-    }
 }
 
 #middle {
@@ -109,7 +114,6 @@ body {
             display: flex;
             flex-direction: column;
             background-color: var(--color-bg-left);
-            border-radius: 0.1rem;
             overflow: hidden;
 
             summary {
@@ -142,19 +146,19 @@ body {
 #center {
     grid-area: center;
     border-top: 0.5rem solid var(--color-fg-center);
-    background-color: var(--color-bg-center);
+    background-color: color-mix(in srgb, var(--color-bg-center), transparent 80%);
     padding: 0.5rem;
 }
 
 #right {
     grid-area: right;
     border-top: 0.5rem solid var(--color-fg-right);
-    background-color: var(--color-bg-right);
+    background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%);
     padding: 0.5rem;
     font-family: sans-serif;
 
     div {
-        background-color: var(--color-bg-right);
+        background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%);
         padding: 0.5rem;
     }
 }

@@ -1,19 +1,59 @@
-:root {
-    --color-bg: #CA670277;
-}
-
 table {
     width: 100%;
-    background-color: var(--color-bg);
     padding: 0.5rem;
     border-collapse: collapse;
+    font-family: monospace;
+    font-size: 11pt;
 
-    tbody {
-        tr:nth-child(even) {
-            background-color: color-mix(in srgb, var(--color-bg), transparent 10%);
-        }
-        tr:nth-child(odd) {
-            background-color: color-mix(in srgb, var(--color-bg) 10%, transparent 10%);
+    thead {
+        tr {
+            background-color: var(--color-fg-center);
         }
     }
+
+    tbody {
+        tr:nth-child(odd) {
+            background-color: color-mix(in srgb, var(--color-bg-center), white 50%);
+        }
+        tr:nth-child(even) {
+            background-color: color-mix(in srgb, var(--color-bg-center), white 40%);
+        }
+
+        tr:hover {
+            background-color: color-mix(in srgb, var(--color-bg-center), white 30%);
+            cursor: pointer;
+        }
+    }
+
+    th, td {
+        padding: 0.25rem;
+    }
+}
+
+form {
+    background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%);
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    padding: 0.25rem;
+
+    fieldset {
+        display: flex;
+        border: 2px solid var(--color-fg-right);
+        box-sizing: border-box;
+        flex-direction: row;
+
+        legend {
+            margin-left: 0.5rem;
+            color: color-mix(in srgb, var(--color-fg-right), black 50%);
+        }
+
+        input {
+            padding: 0.25rem;
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
 }

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
+
+{% block center %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for Unidad in unidades %}
+                <tr onclick="tr_Seleccionar(this)">
+                    <td>{{ Unidad.id }}</td>
+                    <td>{{ Unidad.nombre }}</td>
+                    <td>{{ Unidad.estado }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block right %}
+    <form id="abm_Unidad" action="{{ url_for('unidades.Subir') }}" method="post">
+        <fieldset>
+            <legend>ID</legend>
+            <input type="text" name="id" value="" readonly>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Nombre</legend>
+            <input type="text" name="nombre" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Estado</legend>
+            <input type="text" name="estado" value="">
+        </fieldset>
+
+        <fieldset>
+            <legend>Acciones</legend>
+            <input type="submit" value="Guardar">
+            <input type="button" value="Limpiar" onclick="form_Limpiar()">
+        </fieldset>
+    </form>
+{% endblock %}

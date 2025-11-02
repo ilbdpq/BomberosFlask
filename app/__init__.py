@@ -18,9 +18,10 @@ def Create_APP():
     from scripts import db
     db.Init_APP(APP)
 
-    from blueprints import bp_index, bp_personal
+    from blueprints import bp_index, bp_personal, bp_unidades
     APP.register_blueprint(bp_index.bp)
-    APP.register_blueprint(bp_personal.bp)
+    APP.register_blueprint(bp_personal.bp, url_prefix='/personal')
+    APP.register_blueprint(bp_unidades.bp, url_prefix='/unidades')
 
     return APP
 

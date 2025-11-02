@@ -32,7 +32,7 @@
 
                 <details open>
                     <summary>🗃️ Calificaciones</summary>
-                    <a href="{{ url_for('personal.Personal') }}">📅 Mensual</a>
+                    <a href="">📅 Mensual</a>
                     <a href="">📆 Semestral</a>
                     <a href="">🗓️ Anual</a>
                     <a href="">🗂️ Histórico</a>
@@ -40,8 +40,8 @@
     
                 <details open>
                     <summary>📚 Datos</summary>
-                    <a href="">📗 Personal</a>
-                    <a href="">📕 Unidades</a>
+                    <a href="{{ url_for('personal.Personal') }}">📗 Personal</a>
+                    <a href="{{ url_for('unidades.Unidades') }}">📕 Unidades</a>
                     <a href="">📘 Eventos</a>
                 </details>
             </div>

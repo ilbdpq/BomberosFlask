@@ -40,3 +40,6 @@ def Init_DB_Command():
 def Init_APP(app):
     app.teardown_appcontext(Close_DB)
     app.cli.add_command(Init_DB_Command)
+
+    with app.app_context():
+        Init_DB(True)

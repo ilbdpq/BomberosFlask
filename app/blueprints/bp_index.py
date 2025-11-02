@@ -11,10 +11,10 @@ def Index():
         user = session['user']
         bombero = Bombero.Get_Bombero_By_Username(user)
         
-        if bombero.permisos == 1:
+        if bombero.permisos == 2:
             return render_template('index/index_admin.html', bombero=bombero)
         
-        else:
+        elif bombero.permisos == 1:
             return render_template('index/index_user.html', bombero=bombero)
         
     except KeyError:
