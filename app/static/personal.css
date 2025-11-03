@@ -2,36 +2,44 @@ table {
     width: 100%;
     padding: 0.5rem;
     border-collapse: collapse;
-    font-family: monospace;
-    font-size: 11pt;
+    font-family: sans-serif;
+    font-size: 1rem;
 
     thead {
         tr {
             background-color: var(--color-fg-center);
+            text-align: left;
         }
     }
 
     tbody {
-        tr:nth-child(odd) {
-            background-color: color-mix(in srgb, var(--color-bg-center), white 50%);
+        tr {
+            border-bottom: 0.1rem solid var(--color-fg-center);
         }
-        tr:nth-child(even) {
-            background-color: color-mix(in srgb, var(--color-bg-center), white 40%);
+
+        tr:last-of-type {
+            border-bottom: 0.2rem solid var(--color-fg-center);
+        }
+
+        tr:nth-of-type(odd) {
+            background-color: color-mix(in srgb, var(--color-bg-center), white 85%);
+        }
+        tr:nth-of-type(even) {
+            background-color: color-mix(in srgb, var(--color-bg-center), white 80%);
         }
 
         tr:hover {
-            background-color: color-mix(in srgb, var(--color-bg-center), white 30%);
+            background-color: color-mix(in srgb, var(--color-bg-center), white 75%);
             cursor: pointer;
         }
     }
 
     th, td {
-        padding: 0.25rem;
+        padding: 0.3rem 0.4rem;
     }
 }
 
 form {
-    background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%);
     display: flex;
     flex-direction: column;
     row-gap: 0.5rem;
@@ -39,7 +47,8 @@ form {
 
     fieldset {
         display: flex;
-        border: 2px solid var(--color-fg-right);
+        border: 0.1rem solid var(--color-fg-right);
+        border-bottom: 0.2rem solid var(--color-fg-right);
         box-sizing: border-box;
         flex-direction: row;
 
@@ -53,6 +62,14 @@ form {
             display: flex;
             width: 100%;
             box-sizing: border-box;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        input[type=submit]:hover, input[type=button]:hover {
+            cursor: pointer;
+            background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%)
         }
     }
 
