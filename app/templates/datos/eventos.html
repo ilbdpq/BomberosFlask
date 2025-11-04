@@ -11,16 +11,16 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th class="hidden">Estado</th>
+                <th>Puntos</th>
             </tr>
         </thead>
 
         <tbody>
-            {% for Unidad in unidades %}
+            {% for Evento in eventos %}
                 <tr onclick="tr_Seleccionar(this)">
-                    <td>{{ Unidad.id }}</td>
-                    <td>{{ Unidad.nombre }}</td>
-                    <td class="hidden">{{ Unidad.estado }}</td>
+                    <td>{{ Evento.id }}</td>
+                    <td>{{ Evento.nombre }}</td>
+                    <td>{{ Evento.puntos }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block right %}
-    <form id="abm" action="{{ url_for('unidades.Subir') }}" method="post">
+    <form id="abm" action="{{ url_for('eventos.Subir') }}" method="post">
         <fieldset>
             <legend>ID (no modificable)</legend>
             <input type="text" name="id" value="" readonly>
@@ -40,8 +40,8 @@
         </fieldset>
 
         <fieldset>
-            <legend>Estado</legend>
-            <input type="text" name="estado" value="">
+            <legend>Puntos</legend>
+            <input type="text" name="puntos" value="">
         </fieldset>
 
         <fieldset>

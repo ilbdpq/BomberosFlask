@@ -12,22 +12,19 @@ def Create_APP():
     APP.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE='databases/bomberos.db',
-        PERMANENT_SESSION_LIFETIME=datetime.timedelta(days=7)
+        PERMANENT_SESSION_LIFETIME=datetime.timedelta(minutes=30)
     )
 
     from scripts import db
     db.Init_APP(APP)
 
-    from blueprints import bp_index, bp_personal, bp_unidades
+    from blueprints import bp_index, bp_personal, bp_unidades, bp_eventos
     APP.register_blueprint(bp_index.bp)
     APP.register_blueprint(bp_personal.bp, url_prefix='/personal')
     APP.register_blueprint(bp_unidades.bp, url_prefix='/unidades')
+    APP.register_blueprint(bp_eventos.bp, url_prefix='/eventos')
 
     return APP
-
-@APP.route('/favicon.svg')
-def favicon():
-    return send_from_directory(os.path.join(APP.root_path, 'static'), 'logo.svg',)
 
 if __name__ == '__main__':
     app = Create_APP()

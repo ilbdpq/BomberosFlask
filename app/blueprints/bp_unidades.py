@@ -18,7 +18,7 @@ def Subir():
     unidad = Unidad(
         id=id,
         nombre=nombre,
-        estado=estado
+        estado=estado if estado else 1
     )
 
     if unidad.id == '' or Unidad.Get_Unidad_By_ID(unidad.id) is None:

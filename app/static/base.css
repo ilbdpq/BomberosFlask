@@ -17,7 +17,7 @@
     --color-bg-bottom: #A8DADC77;
 
     --color-fg-left: #BB3E03;
-    --color-bg-left: #BB3E0322;
+    --color-bg-left: #BB3E03;
     
     --color-fg-center: #CA6702;
     --color-bg-center: #CA6702;
@@ -80,7 +80,6 @@ body {
             cursor: pointer;
         }
     }
-
 }
 
 #middle {
@@ -101,7 +100,7 @@ body {
 #left {
     grid-area: left;
     border-top: 0.5rem solid var(--color-fg-left);
-    background-color: var(--color-bg-left);
+    background-color: color-mix(in srgb, var(--color-bg-left), transparent 80%);
     padding: 0.5rem;
 
     #nav {
@@ -113,16 +112,16 @@ body {
         details {
             display: flex;
             flex-direction: column;
-            background-color: var(--color-bg-left);
+            background-color: color-mix(in srgb, var(--color-bg-left), transparent 80%);
             overflow: hidden;
 
             summary {
                 cursor: pointer;
                 user-select: none;
-                background-color: var(--color-bg-left);
+                background-color: var(--color-fg-left);
                 padding: 0.5rem;
                 font-weight: bold;
-                color: var(--color-fg-left);
+                color: color-mix(in srgb, var(--color-fg-left), white 80%);
             }
 
             summary::marker {
@@ -133,11 +132,16 @@ body {
                 display: block;
                 text-decoration: none;
                 padding: 0.5rem;
-                color: var(--color-fg-left);
+                color: color-mix(in srgb, var(--color-fg-left), black 80%);
+                border-bottom: 0.1rem solid var(--color-fg-left);
+            }
+
+            a:last-of-type {
+                border-bottom: 0.2rem solid var(--color-fg-left);
             }
 
             a:hover {
-                background-color: var(--color-bg-left);
+                background-color: color-mix(in srgb, var(--color-bg-left), transparent 80%);
             }
         }
     }
@@ -148,6 +152,18 @@ body {
     border-top: 0.5rem solid var(--color-fg-center);
     background-color: color-mix(in srgb, var(--color-bg-center), transparent 80%);
     padding: 0.5rem;
+
+    .flashes {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        background-color: color-mix(in srgb, var(--color-bg-center), transparent 80%);
+
+        li {
+            border-bottom: 0.1rem solid var(--color-fg-center);
+            padding: 0.25rem;
+        }
+    }
 }
 
 #right {

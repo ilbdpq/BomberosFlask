@@ -6,19 +6,30 @@
 
 {% block center %}
     <form action="{{ url_for('index.Login') }}" method="post">
-        <input type="text" name="username" placeholder="Usuario">
-        <input type="password" name="password" placeholder="Contraseña">
-        <input type="submit" value="Ingresar">
+        <fieldset>
+            <legend>Usuario</legend>
+            <input type="text" name="username">
+        </fieldset>
+
+        <fieldset>
+            <legend>Contraseña</legend>
+            <input type="password" name="password">
+        </fieldset>
+
+        <fieldset>
+            <input type="submit" value="Ingresar">
+        </fieldset>
     </form>
 {% endblock %}
 
 {% block right %}
-    <div>
+    <fieldset>
+        <legend>Información</legend>
         <p>
             Por favor, ingrese sus credenciales.
         </p>
         <p>
             Puede usar su nombre de usuario, su legajo, o su DNI.
         </p>
-    </div>
+    </fieldset>
 {% endblock %}

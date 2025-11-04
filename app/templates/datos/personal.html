@@ -18,7 +18,7 @@
                 <th>Nacimiento</th>
                 <th>Provincia</th>
                 <th>Lugar</th>
-                <th style="display: none;">Permisos</th>
+                <th class="hidden">Permisos</th>
             </tr>
         </thead>
 
@@ -34,7 +34,7 @@
                     <td>{{ Bombero.fecha_nacimiento }}</td>
                     <td>{{ Bombero.provincia }}</td>
                     <td>{{ Bombero.lugar }}</td>
-                    <td style="display: none;">{{ Bombero.permisos }}</td>
+                    <td class="hidden">{{ Bombero.permisos }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -42,55 +42,55 @@
 {% endblock %}
 
 {% block right %}
-    <form id="abm_Bombero" action="{{ url_for('personal.Subir') }}" method="post">
+    <form id="abm" action="{{ url_for('personal.Subir') }}" method="post">
         <fieldset>
             <legend>Legajo</legend>
-            <input type="text" name="legajo" value="">
+            <input type="text" name="legajo" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>DNI</legend>
-            <input type="text" name="dni" value="">
+            <input type="text" name="dni" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Usuario</legend>
-            <input type="text" name="username" value="">
+            <input type="text" name="username" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Contraseña</legend>
-            <input type="text" name="password" value="">
+            <input type="text" name="password" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Apellido, Nombre</legend>
-            <input type="text" name="apellido_nombre" value="">
+            <input type="text" name="apellido_nombre" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Teléfono</legend>
-            <input type="text" name="telefono" value="">
+            <input type="text" name="telefono" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Nacimiento</legend>
-            <input type="text" name="fecha_nacimiento" value="">
+            <input type="text" name="fecha_nacimiento" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Provincia</legend>
-            <input type="text" name="provincia" value="">
+            <input type="text" name="provincia" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Lugar</legend>
-            <input type="text" name="lugar" value="">
+            <input type="text" name="lugar" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Permisos</legend>
-            <input type="text" name="permisos" value="">
+            <input type="text" name="permisos" value="" required>
         </fieldset>
 
         <fieldset>

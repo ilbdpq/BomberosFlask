@@ -72,5 +72,8 @@ form {
             background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%)
         }
     }
+}
 
+.hidden {
+    display: none;
 }

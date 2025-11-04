@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            Bomberos / {{ session['user'] }}
-        </title>
-    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Bomberos / {{ session['user'] }}
+    </title>
 
+    <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    {% block head %}
+    {% endblock %}
 </head>
 
 <body>
@@ -42,7 +44,7 @@
                     <summary>📚 Datos</summary>
                     <a href="{{ url_for('personal.Personal') }}">📗 Personal</a>
                     <a href="{{ url_for('unidades.Unidades') }}">📕 Unidades</a>
-                    <a href="">📘 Eventos</a>
+                    <a href="{{ url_for('eventos.Eventos') }}">📘 Eventos</a>
                 </details>
             </div>
     

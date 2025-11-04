@@ -1,5 +1,5 @@
 function tr_Seleccionar(tr_element) {
-    const form_element = document.getElementById('abm_Bombero');
+    const form_element = document.getElementById('abm');
     const td_elements = tr_element.querySelectorAll('td');
     const input_elements = form_element.querySelectorAll('input, select');
 
@@ -9,7 +9,7 @@ function tr_Seleccionar(tr_element) {
 }
 
 function form_Limpiar() {
-    const form_element = document.getElementById('abm_Bombero');
+    const form_element = document.getElementById('abm');
     const input_elements = form_element.querySelectorAll('input, select');
 
     input_elements.forEach((input_element) => {
