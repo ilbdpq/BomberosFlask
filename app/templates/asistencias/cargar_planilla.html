@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block center %}
+    <fieldset>
+        <legend>Tests</legend>
+        <form action="" method="post">
+            <input type="submit" value="Test" formaction="{{ url_for('asistencias.Test') }}">
+            <input type="submit" value="Limpiar" formaction="{{ url_for('asistencias.Limpiar') }}">
+        </form>
+    </fieldset>
+{% endblock %}
