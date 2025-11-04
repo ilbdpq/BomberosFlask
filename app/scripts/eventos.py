@@ -21,6 +21,22 @@ class Evento:
             nombre=evento_data['nombre'],
             puntos=evento_data['puntos']
         )
+        
+    def Get_Evento_By_Nombre(nombre):
+        DB = Get_DB()
+        evento_data = DB.execute(
+            'SELECT * FROM eventos WHERE nombre = ?',
+            (nombre,)
+        ).fetchone()
+        
+        if evento_data is None:
+            return None
+        
+        return Evento(
+            id=evento_data['id'],
+            nombre=evento_data['nombre'],
+            puntos=evento_data['puntos']
+        )
 
     def Get_Eventos():
         DB = Get_DB()

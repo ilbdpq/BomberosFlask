@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block center %}
+    <form action="" method="post">
+        {% for evento in eventos %}
+            <input type="submit" name="evento" value="{{ evento.nombre }}" formaction="{{ url_for('asistencias.Nueva_Planilla', evento=evento) }}">
+        {% endfor %}
+    </form>
+
     <fieldset>
         <legend>Tests</legend>
         <form action="" method="post">

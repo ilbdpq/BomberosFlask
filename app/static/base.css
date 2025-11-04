@@ -87,7 +87,6 @@ body {
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas:
     'left center right';
-    border-top: 0.5rem solid var(--color-fg-middle);
 }
 
 #bottom {
