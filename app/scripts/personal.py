@@ -85,7 +85,7 @@ class Bombero:
     def Get_Bomberos():
         DB = Get_DB()
         bomberos_data = DB.execute(
-            'SELECT * FROM personal'
+            'SELECT * FROM personal ORDER BY apellido_nombre'
         ).fetchall()
         
         bomberos_list = []

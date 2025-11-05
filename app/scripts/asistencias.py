@@ -14,6 +14,17 @@ class Asistencia_Cabecera:
         
     def Get_Asistencias(self):
         pass
+
+    def Get_Asistencia_By_ID(id_cabecera):
+        DB = Get_DB()
+        CUR = DB.cursor()
+        CUR.execute('SELECT id, id_evento, fecha_creada, fecha_aceptada, legajo_responsable, descripcion FROM asistencias_cab WHERE id = ?', (id_cabecera,))
+        row = CUR.fetchone()
+
+        if row is None:
+            return None
+
+        return Asistencia_Cabecera(row[0], row[1], row[2], row[3], row[4], row[5])
     
     def Add_Detalle(self, detalle):
         self.detalles.append(detalle)
@@ -31,12 +42,12 @@ class Asistencia_Detalle:
         DB.execute('INSERT INTO asistencias_det (id_cab, legajo, id_unidad, estado) VALUES (?, ?, ?, ?)', (self.id_cab, self.legajo, self.id_unidad, self.estado))
         DB.commit()
         
-def Add_Cabecera(id_evento, descripcion):
+def Add_Cabecera(id_evento):
     fecha_creada = datetime.datetime.now().strftime('%Y-%m-%d')
     
     DB = Get_DB()
     CUR = DB.cursor()
-    CUR.execute('INSERT INTO asistencias_cab (id_evento, fecha_creada, descripcion) VALUES (?, ?, ?)', (id_evento, fecha_creada, descripcion))
+    CUR.execute('INSERT INTO asistencias_cab (id_evento, fecha_creada) VALUES (?, ?)', (id_evento, fecha_creada))
     DB.commit()
     
     return CUR.lastrowid

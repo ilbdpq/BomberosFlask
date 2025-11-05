@@ -14,12 +14,13 @@ bp = Blueprint('asistencias', __name__)
 def Index():
     return render_template('asistencias/cargar_planilla.html', eventos=Evento.Get_Eventos())
 
-@bp.route('/cargar/<id>', methods=['POST'])
-def Nueva_Planilla(id_evento):
-    id_cabecera = Add_Cabecera(id_evento, '')
+@bp.route('/cargar/<evento_nombre>', methods=['POST'])
+def Nueva_Planilla(evento_nombre):
+    evento = Evento.Get_Evento_By_Nombre(evento_nombre)
+    id_cabecera = Add_Cabecera(evento.id)
     
     flash('Planilla de asistencias cargada correctamente.')
-    return render_template('asistencias/cargar_planilla_detalle.html', id_cabecera=id_cabecera, bomberos=Bombero.Get_Bomberos(), unidades=Unidad.Get_Unidades())
+    return render_template('asistencias/cargar_planilla_detalle.html', cabecera=Asistencia_Cabecera.Get_Asistencia_By_ID(id_cabecera), evento=evento, bomberos=Bombero.Get_Bomberos(), unidades=Unidad.Get_Unidades())
 
 @bp.route('/Test/1', methods=['POST'])
 def Test():

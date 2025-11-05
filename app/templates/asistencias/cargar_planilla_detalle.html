@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='asistencias.css') }}">
+{% endblock %}
+
 {% block center %}
     <form action="" method="post">
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th colspan="2">Evento</th>
-                    <th>Fecha</th>
+                    <th>#{{ cabecera.id }}</th>
+                    <th colspan="2">{{ evento.nombre }}</th>
+                    <th>{{ cabecera.fecha_creada }}</th>
                 </tr>
                 <tr>
                     <th>Bombero</th>
@@ -18,9 +22,12 @@
                 {% for bombero in bomberos %}
                     <tr>
                         <td>{{ bombero.apellido_nombre }}</td>
-                        <td><input type="radio" name="estado">Presente</td>
-                        <td><input type="radio" name="estado">Licencia</td>
-                        <td><input type="radio" name="estado">Ausente</td>
+                        <td>
+                            <input type="radio" name="estado_{{bombero.legajo}}">
+                            <label for="estado_{{bombero.legajo}}">Presente</label>
+                        </td>
+                        <td><input type="radio" name="estado_{{bombero.legajo}}">Licencia</td>
+                        <td><input type="radio" name="estado_{{bombero.legajo}}">Ausente</td>
                     </tr>
                 {% endfor %}
                 <tr>
