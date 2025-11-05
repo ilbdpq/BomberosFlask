@@ -9,6 +9,22 @@ table {
         tr {
             background-color: var(--color-fg-center);
             text-align: left;
+
+            th {
+                color: white;
+                border-right: 0.1rem solid white;
+                border-bottom: 0.1rem solid white;
+            }
+
+            th:last-of-type {
+                border-right: none;
+            }
+        }
+
+        tr:last-of-type {
+            th {
+                border-bottom: none;
+            }
         }
     }
 
@@ -33,11 +49,87 @@ table {
         }
     }
 
-    th, td {
-        padding: 0.3rem 0.4rem;
+    tr {
+        th, td {
+            padding: 0.3rem 0.4rem;
+        }
+
+        td:last-of-type {
+            width: 1%;
+            white-space: nowrap;
+        }
+    }
+
+    .radio {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.1rem;
 
         input[type=radio] {
             display: none;
+        }
+
+        input[type=radio]:checked + label {
+            background-color: var(--color-fg-center);
+            color: white;
+        }
+
+        label {
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            padding: 0.2rem 0.3rem;
+        }
+    }
+
+    input[type=submit] {
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+}
+
+fieldset {
+    display: flex;
+    border: 0.1rem solid var(--color-fg-center);
+    border-bottom: 0.2rem solid var(--color-fg-center);
+    box-sizing: border-box;
+    padding: 0.5rem;
+    width: 50%;
+    margin: auto;
+
+    legend {
+        margin-left: 0.5rem;
+        color: color-mix(in srgb, var(--color-fg-center), black 50%);
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        width: 100%;
+        justify-content: space-evenly;
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+
+        button {
+            width: 30%;
+            aspect-ratio: 1;
+            background: none;
+            border: 0.1rem solid var(--color-fg-center);
+            background-color: color-mix(in srgb, var(--color-fg-center), white 50%);
+            flex-grow: 1;
+            cursor: pointer;
+
+            span {
+                display: inline-block;
+                transform: rotate(-11.25deg);
+                color: var(--color-fg-center);
+                font-size: 24pt;
+                font-family: monospace;
+            }
         }
     }
 }

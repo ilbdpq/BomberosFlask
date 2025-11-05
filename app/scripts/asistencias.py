@@ -4,18 +4,18 @@ from scripts.db import Get_DB
 
 class Asistencia_Cabecera:
     def __init__(self, id, id_evento, fecha_creada, fecha_aceptada = None, legajo_responsable = None, descripcion = None):
-        self.id = id
-        self.id_evento = id_evento
-        self.fecha_creada = fecha_creada
-        self.fecha_aceptada = fecha_aceptada
-        self.legajo_responsable = legajo_responsable
-        self.descripcion = descripcion
+        self.id = int(id)
+        self.id_evento = int(id_evento)
+        self.fecha_creada = str(fecha_creada)
+        self.fecha_aceptada = str(fecha_aceptada) if fecha_aceptada else None
+        self.legajo_responsable = str(legajo_responsable) if legajo_responsable else None
+        self.descripcion = str(descripcion) if descripcion else None
         self.detalles = []
         
     def Get_Asistencias(self):
         pass
 
-    def Get_Asistencia_By_ID(id_cabecera):
+    def Get_By_ID(id_cabecera):
         DB = Get_DB()
         CUR = DB.cursor()
         CUR.execute('SELECT id, id_evento, fecha_creada, fecha_aceptada, legajo_responsable, descripcion FROM asistencias_cab WHERE id = ?', (id_cabecera,))
@@ -31,11 +31,11 @@ class Asistencia_Cabecera:
         
 class Asistencia_Detalle:
     def __init__(self, id, id_cab, legajo, id_unidad, estado):
-        self.id = id
-        self.id_cab = id_cab
-        self.legajo = legajo
-        self.id_unidad = id_unidad
-        self.estado = estado
+        self.id = int(id) if id else None
+        self.id_cab = int(id_cab)
+        self.legajo = str(legajo)
+        self.id_unidad = int(id_unidad) if id_unidad else None
+        self.estado = int(estado)
         
     def Add(self):
         DB = Get_DB()

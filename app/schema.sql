@@ -21,9 +21,10 @@ CREATE TABLE personal (
 
 -- Tabla unidades
 CREATE TABLE unidades (
-    id     INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT    NOT NULL,
-    estado INTEGER NOT NULL DEFAULT 1
+    id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre  TEXT    NOT NULL,
+    patente TEXT    NOT NULL,
+    estado  INTEGER NOT NULL DEFAULT 1
 );
 
 -- Tabla eventos
@@ -82,3 +83,19 @@ INSERT INTO personal (legajo, dni, username, password, apellido_nombre, telefono
 ('033-042-R7', 26112825, 'pelli', 'user', 'Valor, Juan Manual', NULL, '1982-09-26', 'Santa Fe', 'Totoras', 1),
 ('033-043-R7', 36467096, 'kokan', 'user', 'Nocioni, Franco', NULL, '1977-08-25', 'Santa Fe', 'Totoras', 1),
 ('033-035-R7', 25205874, 'nocionifranco', 'user', 'Almirón, Abel', NULL, '1992-11-07', 'Santa Fe', 'Totoras', 1);
+
+INSERT INTO unidades (nombre, patente, estado) VALUES
+('A Presto', 'AP', 1),
+('Autobomba', 'IES048', 1),
+('Autobomba', 'MAR287', 1),
+('Autobomba', 'AB511FG', 1),
+('Ambulancia', 'AA456EF', 1),
+('Ambulancia', 'TCP405', 1),
+('Cisterna', 'ERR404', 1);
+
+INSERT INTO eventos (nombre, puntos) VALUES
+('Sirena', 2.0),
+('Práctica', 3.0),
+('Fagina', 3.0),
+('Especial', 1.0),
+('Conducta', 1.0);

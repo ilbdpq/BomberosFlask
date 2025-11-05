@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='asistencias.css') }}">
+{% endblock %}
+
 {% block center %}
-    <form action="" method="post">
-        {% for evento in eventos %}
-            <input type="submit" name="evento" value="{{ evento.nombre }}" formaction="{{ url_for('asistencias.Nueva_Planilla', evento_nombre=evento.nombre) }}">
-        {% endfor %}
-    </form>
+    <fieldset>
+        <legend>Cargar</legend>
+        <form method="post">
+            {% for evento in eventos %}
+                <button type="submit" name="evento" formaction="{{ url_for('asistencias.Nueva_Planilla', evento_nombre=evento.nombre) }}">
+                    <span>{{ evento.nombre }}</span>
+                </button>
+            {% endfor %}
+        </form>
+    </fieldset>
 
     <fieldset>
         <legend>Tests</legend>

@@ -13,11 +13,13 @@ def Unidades():
 def Subir():
     id = request.form['id']
     nombre = request.form['nombre']
+    patente = request.form['patente']
     estado = request.form['estado']
 
     unidad = Unidad(
         id=id,
         nombre=nombre,
+        patente=patente,
         estado=estado if estado else 1
     )
 

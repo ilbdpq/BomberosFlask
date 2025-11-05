@@ -11,6 +11,7 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Patente</th>
                 <th class="hidden">Estado</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <tr onclick="tr_Seleccionar(this)">
                     <td>{{ Unidad.id }}</td>
                     <td>{{ Unidad.nombre }}</td>
+                    <td>{{ Unidad.patente }}</td>
                     <td class="hidden">{{ Unidad.estado }}</td>
                 </tr>
             {% endfor %}
@@ -36,12 +38,17 @@
         
         <fieldset>
             <legend>Nombre</legend>
-            <input type="text" name="nombre" value="">
+            <input type="text" name="nombre" value="" required>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Patente</legend>
+            <input type="text" name="patente" value="" required>
         </fieldset>
 
         <fieldset>
             <legend>Estado</legend>
-            <input type="text" name="estado" value="">
+            <input type="text" name="estado" value="" required>
         </fieldset>
 
         <fieldset>

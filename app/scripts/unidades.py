@@ -1,9 +1,10 @@
 from scripts.db import Get_DB
 
 class Unidad:
-    def __init__(self, id, nombre, estado):
+    def __init__(self, id, nombre, patente, estado):
         self.id = id
         self.nombre = nombre
+        self.patente = patente
         self.estado = estado
 
     def Get_Unidad_By_ID(id):
@@ -19,6 +20,7 @@ class Unidad:
         return Unidad(
             id=unidad_data['id'],
             nombre=unidad_data['nombre'],
+            patente=unidad_data['patente'],
             estado=unidad_data['estado']
         )
 
@@ -34,6 +36,7 @@ class Unidad:
                 Unidad(
                     id=unidad_data['id'],
                     nombre=unidad_data['nombre'],
+                    patente=unidad_data['patente'],
                     estado=unidad_data['estado']
                 )
             )
@@ -43,15 +46,15 @@ class Unidad:
     def Set(self):
         DB = Get_DB()
         DB.execute(
-            'UPDATE unidades SET nombre = ?, estado = ? WHERE id = ?',
-            (self.nombre, self.estado, self.id)
+            'UPDATE unidades SET nombre = ?, patente = ?, estado = ? WHERE id = ?',
+            (self.nombre, self.patente, self.estado, self.id)
         )
         DB.commit()
 
     def Add(self):
         DB = Get_DB()
         DB.execute(
-            'INSERT INTO unidades (nombre, estado) VALUES (?, ?)',
-            (self.nombre, self.estado)
+            'INSERT INTO unidades (nombre, patente, estado) VALUES (?, ?, ?)',
+            (self.nombre, self.patente, self.estado)
         )
         DB.commit()
