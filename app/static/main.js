@@ -24,3 +24,9 @@ function form_Limpiar() {
         }
     });
 }
+
+function actualizar_Descripcion() {
+    textarea = document.getElementsByName('descripcion_textarea')[0];
+    input_element = document.getElementsByName('descripcion')[0];
+    input_element.value = textarea.value;
+}

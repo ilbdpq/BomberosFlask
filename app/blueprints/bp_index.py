@@ -9,13 +9,12 @@ bp = Blueprint('index', __name__)
 def Index():
     try:
         user = session['user']
-        bombero = Bombero.Get_Bombero_By_Username(user)
         
-        if bombero.permisos == 2:
-            return render_template('index/index_admin.html', bombero=bombero)
+        if user['permisos'] == 2:
+            return render_template('index/index_admin.html', bombero=user)
         
-        elif bombero.permisos == 1:
-            return render_template('index/index_user.html', bombero=bombero)
+        elif user['permisos'] == 1:
+            return render_template('index/index_user.html', bombero=user)
         
     except KeyError:
         return render_template('index/index_login.html')
@@ -25,7 +24,6 @@ def Login():
     username = request.form['username']
     password = request.form['password']
     
-    # Aquí iría la lógica de autenticación
     bombero = Bombero.Get_Bombero_By_Username(username)
     
     if not bombero:
@@ -36,7 +34,12 @@ def Login():
     
     if bombero:
         if bombero.password == password:
-            session['user'] = bombero.username
+            session['user'] = {
+                'legajo': bombero.legajo,
+                'username': bombero.username,
+                'apellido_nombre': bombero.apellido_nombre,
+                'permisos': bombero.permisos,
+            }
             session.permanent = True  # Mantener la sesión activa
             
             return redirect(url_for('index.Index'))

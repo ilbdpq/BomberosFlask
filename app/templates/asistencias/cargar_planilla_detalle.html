@@ -2,19 +2,26 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='asistencias.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 {% endblock %}
 
 {% block center %}
     <form action="{{ url_for('asistencias.Cargar_Detalles') }}" method="post">
         <table>
+            <col width="50%"><col width="25%"><col width="25%">
             <thead>
                 <tr>
                     <th>
                         Planilla #{{ cabecera.id }}
                         <input type="hidden" name="id_cabecera" value="{{ cabecera.id }}">
                     </th>
-                    <th>Evento: {{ evento.nombre }}</th>
-                    <th>{{ cabecera.fecha_creada }}</th>
+                    <th>
+                        Evento: {{ evento.nombre }}
+                        <input type="hidden" name="descripcion">
+                    </th>
+                    <th>
+                        {{ cabecera.fecha_creada }}
+                    </th>
                 </tr>
                 <tr>
                     <th>Bombero</th>
@@ -55,4 +62,11 @@
             </tbody>
         </table>
     </form>
+{% endblock %}
+
+{% block right %}
+    <fieldset>
+        <legend>Descripción</legend>
+        <textarea name="descripcion_textarea" rows="10" oninput="actualizar_Descripcion()"></textarea>
+    </fieldset>
 {% endblock %}

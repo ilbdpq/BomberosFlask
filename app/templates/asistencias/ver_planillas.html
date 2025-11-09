@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='asistencias.css') }}">
+{% endblock %}
+
+{% block center %}
+    {% for planilla in planillas %}
+        <form action="" method="post">
+            <table style="margin-bottom: 1rem;">
+                <col width="50%"><col width="25%"><col width="25%">
+                <thead>
+                    <tr>
+                        <th>
+                            <div>
+                                <span>
+                                    Planilla #{{ planilla.id }}
+                                </span>
+                                <span>
+                                    Evento: {{ Evento.Get_Evento_By_ID(planilla.id_evento).nombre }}
+                                </span>
+                            </div>
+                        </th>
+                        <th colspan="2">
+                            <div>
+                                <span>
+                                    Creada: {{ planilla.fecha_creada }}
+                                </span>
+                                <span>
+                                    Aceptada: {{ planilla.fecha_aceptada }}
+                                </span>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            Descripción: 
+                            {% if planilla.descripcion != None %}
+                                {{ planilla.descripcion }}
+                            {% else %}
+                                No tiene
+                            {% endif %}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Bombero (Legajo)
+                        </th>
+                        <th>
+                            Unidad
+                        </th>
+                        <th>
+                            Asistencia
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in planilla.detalles %}
+                        <tr>
+                            <td>
+                                {{ Bombero.Get_Bombero_By_Legajo(detalle.legajo).apellido_nombre }} ({{ detalle.legajo }})
+                            </td>
+                            <td>
+                                {% if detalle.id_unidad != None %}
+                                    {{ Unidad.Get_Unidad_By_ID(detalle.id_unidad).nombre }} ({{Unidad.Get_Unidad_By_ID(detalle.id_unidad).patente}})
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if detalle.estado == 1 %}
+                                    Asistió
+                                {% elif detalle.estado == 2 %}
+                                    Licencia
+                                {% else %}
+                                    Ausente
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    {% endfor %}
+{% endblock %}

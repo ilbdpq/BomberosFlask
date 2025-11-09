@@ -10,10 +10,20 @@ class Asistencia_Cabecera:
         self.fecha_aceptada = str(fecha_aceptada) if fecha_aceptada else None
         self.legajo_responsable = str(legajo_responsable) if legajo_responsable else None
         self.descripcion = str(descripcion) if descripcion else None
-        self.detalles = []
+        self.detalles = self.Get_Detalles()
         
-    def Get_Asistencias(self):
-        pass
+    def Get_Detalles(self):
+        DB = Get_DB()
+        CUR = DB.cursor()
+        CUR.execute('SELECT id, id_cab, legajo, id_unidad, estado FROM asistencias_det WHERE id_cab = ?', (self.id,))
+        rows = CUR.fetchall()
+
+        detalles = []
+        for row in rows:
+            detalle = Asistencia_Detalle(row[0], row[1], row[2], row[3], row[4])
+            detalles.append(detalle)
+
+        return detalles
 
     def Get_By_ID(id_cabecera):
         DB = Get_DB()
@@ -25,9 +35,46 @@ class Asistencia_Cabecera:
             return None
 
         return Asistencia_Cabecera(row[0], row[1], row[2], row[3], row[4], row[5])
-    
+
+    def Get_Aceptadas():
+        DB = Get_DB()
+        CUR = DB.cursor()
+        CUR.execute('SELECT id, id_evento, fecha_creada, fecha_aceptada, legajo_responsable, descripcion FROM asistencias_cab WHERE fecha_aceptada IS NOT NULL')
+        rows = CUR.fetchall()
+
+        cabeceras = []
+        for row in rows:
+            cabecera = Asistencia_Cabecera(row[0], row[1], row[2], row[3], row[4], row[5])
+            cabeceras.append(cabecera)
+
+        return cabeceras
+
+    def Get_Pendientes():
+        DB = Get_DB()
+        CUR = DB.cursor()
+        CUR.execute('SELECT id, id_evento, fecha_creada, fecha_aceptada, legajo_responsable, descripcion FROM asistencias_cab WHERE fecha_aceptada IS NULL')
+        rows = CUR.fetchall()
+
+        cabeceras = []
+        for row in rows:
+            cabecera = Asistencia_Cabecera(row[0], row[1], row[2], row[3], row[4], row[5])
+            cabeceras.append(cabecera)
+
+        return cabeceras
+
+    def Set(self):
+        DB = Get_DB()
+        DB.execute('UPDATE asistencias_cab SET fecha_aceptada = ?, legajo_responsable = ?, descripcion = ? WHERE id = ?', (self.fecha_aceptada, self.legajo_responsable, self.descripcion, self.id))
+        DB.commit()
+
     def Add_Detalle(self, detalle):
         self.detalles.append(detalle)
+
+    def Del(self):
+        DB = Get_DB()
+        DB.execute('DELETE FROM asistencias_cab WHERE id = ?', (self.id,))
+        DB.execute('DELETE FROM asistencias_det WHERE id_cab = ?', (self.id,))
+        DB.commit()
         
 class Asistencia_Detalle:
     def __init__(self, id, id_cab, legajo, id_unidad, estado):

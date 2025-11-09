@@ -1,135 +1,189 @@
-table {
-    width: 100%;
-    padding: 0.5rem;
-    border-collapse: collapse;
-    font-family: sans-serif;
-    font-size: 1rem;
+#center {
+    table {
+        width: 100%;
+        padding: 0.5rem;
+        border-collapse: collapse;
+        font-family: sans-serif;
+        font-size: 1rem;
 
-    thead {
+        thead {
+            tr {
+                background-color: var(--color-fg-center);
+                text-align: left;
+
+                th {
+                    color: white;
+                    border-right: 0.1rem solid white;
+                    border-bottom: 0.1rem solid white;
+                }
+
+                th:last-of-type {
+                    border-right: none;
+                }
+            }
+
+            tr:last-of-type {
+                th {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 0.1rem solid var(--color-fg-center);
+            }
+
+            tr:last-of-type {
+                border-bottom: 0.2rem solid var(--color-fg-center);
+            }
+
+            tr:nth-of-type(odd) {
+                background-color: color-mix(in srgb, var(--color-bg-center), white 85%);
+            }
+            tr:nth-of-type(even) {
+                background-color: color-mix(in srgb, var(--color-bg-center), white 80%);
+            }
+
+            tr:hover {
+                background-color: color-mix(in srgb, var(--color-bg-center), white 75%);
+            }
+        }
+
         tr {
-            background-color: var(--color-fg-center);
-            text-align: left;
+            th, td {
+                padding: 0.3rem 0.4rem;
 
-            th {
-                color: white;
-                border-right: 0.1rem solid white;
-                border-bottom: 0.1rem solid white;
+                div {
+                    display: flex;
+                    justify-content: space-between;
+                }
             }
 
-            th:last-of-type {
-                border-right: none;
-            }
-        }
+            .radio {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.1rem;
 
-        tr:last-of-type {
-            th {
-                border-bottom: none;
+                input[type=radio] {
+                    display: none;
+                }
+
+                input[type=radio]:checked + label {
+                    background-color: var(--color-fg-center);
+                    color: white;
+                }
+
+                label {
+                    cursor: pointer;
+                    text-align: center;
+                    width: 100%;
+                    padding: 0.2rem 0.3rem;
+                }
+            }
+
+            input[type=submit] {
+                background: none;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+
+            select {
+                background: none;
+                border: none;
+                outline: none;
+                font-size: medium;
+
+                option {
+                    font-size: medium;
+                }
+            }
+
+            .botones {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+
+                button {
+                    background: none;
+                    outline: none;
+                    border: none;
+                    cursor: pointer;
+
+                    background-color: var(--color-fg-center);
+                    color: white;
+                    font-size: medium;
+                    width: 25%;
+                }
             }
         }
     }
 
-    tbody {
-        tr {
-            border-bottom: 0.1rem solid var(--color-fg-center);
-        }
-
-        tr:last-of-type {
-            border-bottom: 0.2rem solid var(--color-fg-center);
-        }
-
-        tr:nth-of-type(odd) {
-            background-color: color-mix(in srgb, var(--color-bg-center), white 85%);
-        }
-        tr:nth-of-type(even) {
-            background-color: color-mix(in srgb, var(--color-bg-center), white 80%);
-        }
-
-        tr:hover {
-            background-color: color-mix(in srgb, var(--color-bg-center), white 75%);
-        }
-    }
-
-    tr {
-        th, td {
-            padding: 0.3rem 0.4rem;
-        }
-
-        td:last-of-type {
-            width: 1%;
-            white-space: nowrap;
-        }
-    }
-
-    .radio {
+    fieldset {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.1rem;
+        border: 0.1rem solid var(--color-fg-center);
+        border-bottom: 0.2rem solid var(--color-fg-center);
+        box-sizing: border-box;
+        padding: 0.5rem;
+        width: 75%;
+        margin: auto;
 
-        input[type=radio] {
-            display: none;
+        legend {
+            margin-left: 0.5rem;
+            color: color-mix(in srgb, var(--color-fg-center), black 50%);
         }
 
-        input[type=radio]:checked + label {
-            background-color: var(--color-fg-center);
-            color: white;
-        }
-
-        label {
-            cursor: pointer;
-            text-align: center;
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            box-sizing: border-box;
             width: 100%;
-            padding: 0.2rem 0.3rem;
-        }
-    }
+            justify-content: space-evenly;
+            column-gap: 0.5rem;
+            row-gap: 0.5rem;
 
-    input[type=submit] {
-        background: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
+            button {
+                width: 20%;
+                aspect-ratio: 1;
+                max-height: 9rem;
+                background: none;
+                border: 0.1rem solid var(--color-fg-center);
+                background-color: color-mix(in srgb, var(--color-fg-center), white 50%);
+                flex-grow: 1;
+                cursor: pointer;
+
+                span {
+                    display: inline-block;
+                    transform: rotate(-11.25deg);
+                    color: var(--color-fg-center);
+                    font-size: 1.5rem;
+                    font-family: monospace;
+                }
+            }
+        }
     }
 }
 
-fieldset {
-    display: flex;
-    border: 0.1rem solid var(--color-fg-center);
-    border-bottom: 0.2rem solid var(--color-fg-center);
-    box-sizing: border-box;
-    padding: 0.5rem;
-    width: 50%;
-    margin: auto;
-
-    legend {
-        margin-left: 0.5rem;
-        color: color-mix(in srgb, var(--color-fg-center), black 50%);
-    }
-
-    form {
+#right {
+    fieldset {
         display: flex;
-        flex-wrap: wrap;
+        border: 0.1rem solid var(--color-fg-right);
+        border-bottom: 0.2rem solid var(--color-fg-right);
         box-sizing: border-box;
-        width: 100%;
-        justify-content: space-evenly;
-        column-gap: 0.5rem;
-        row-gap: 0.5rem;
+        padding: 0.5rem;
 
-        button {
-            width: 30%;
-            aspect-ratio: 1;
-            background: none;
-            border: 0.1rem solid var(--color-fg-center);
-            background-color: color-mix(in srgb, var(--color-fg-center), white 50%);
-            flex-grow: 1;
-            cursor: pointer;
+        legend {
+            margin-left: 0.5rem;
+            color: color-mix(in srgb, var(--color-fg-right), black 50%);
+        }
 
-            span {
-                display: inline-block;
-                transform: rotate(-11.25deg);
-                color: var(--color-fg-center);
-                font-size: 24pt;
-                font-family: monospace;
-            }
+        textarea {
+        background: none;
+        outline: none;
+        border: none;
+        resize: none;
         }
     }
 }

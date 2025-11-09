@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Bomberos / {{ session['user'] }}
+        Bomberos / {{ session['user']['username'] }}
     </title>
 
     <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
@@ -29,7 +29,8 @@
                 <details open>
                     <summary>📑 Asistencias</summary>
                     <a href="{{ url_for('asistencias.Index') }}">📝 Cargar Planilla</a>
-                    <a href="">📄 Ver Planillas</a>
+                    <a href="{{ url_for('asistencias.Verificar_Planillas') }}">📑 Verificar Planillas</a>
+                    <a href="{{ url_for('asistencias.Ver_Planillas') }}">📄 Ver Planillas</a>
                 </details>
 
                 <details open>
