@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block center %}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Bombero (Legajo)
+                </th>
+                <th>
+                    Puntaje
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for calificacion in calificaciones %}
+                <tr>
+                    <td>
+                        {{ Bombero.Get_Bombero_By_Legajo(calificacion.legajo).apellido_nombre }}
+                    </td>
+                    <td>
+                        {{ calificacion.puntaje }}
+                    </td>
+                </tr>
+
+                {% for evento in Calificacion.Get_Desglose_Mensual(calificacion.legajo) %}
+                    <tr>
+                        <td>
+                            {{ Evento.Get_Evento_By_ID(evento.id_evento).nombre }}
+                        </td>
+                        <td>
+                            {{ evento.puntos }}
+                        </td>
+                        <td>
+                            {{ evento.asistencias }}
+                        </td>
+                        <td>
+                            {{ evento.total }}
+                        </td>
+                        <td>
+                            {{ evento.puntaje }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}  
+        </tbody>
+    </table>
+
+{% endblock %}

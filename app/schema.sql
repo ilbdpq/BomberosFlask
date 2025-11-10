@@ -59,40 +59,51 @@ CREATE TABLE asistencias_det (
 
 -- Vistas
 CREATE VIEW calificaciones AS
-    WITH cte_eventos AS (
-        SELECT
-            asistencias_cab.id_evento AS id,
-            eventos.puntos,
-            COUNT(*) AS total
-        FROM asistencias_cab
-        JOIN eventos ON eventos.id = asistencias_cab.id_evento
-        WHERE
-            asistencias_cab.fecha_aceptada IS NOT NULL
-            AND eventos.nombre != 'Conducta'
-        GROUP BY asistencias_cab.id_evento
-    ),
-
-    cte_puntos AS (
-        SELECT
-            asistencias_det.legajo,
-            COUNT(NULLIF(asistencias_det.estado, 0)) AS asistencias,
-            cte_eventos.total,
-            cte_eventos.puntos
-        FROM asistencias_cab
-        JOIN asistencias_det ON asistencias_det.id_cab = asistencias_cab.id
-        JOIN cte_eventos ON cte_eventos.id = asistencias_cab.id_evento
-        WHERE asistencias_cab.fecha_aceptada IS NOT NULL
-        GROUP BY asistencias_det.legajo, asistencias_cab.id_evento
-    )
-
+    WITH
+        cte_eventos AS (
+            SELECT
+                asistencias_cab.id_evento AS id,
+                eventos.puntos,
+                COUNT(*) AS total
+            FROM
+                asistencias_cab
+                JOIN eventos ON eventos.id = asistencias_cab.id_evento
+            WHERE
+                asistencias_cab.fecha_aceptada IS NOT NULL
+                AND eventos.nombre != 'Conducta'
+            GROUP BY
+                asistencias_cab.id_evento
+        ),
+        cte_puntos AS (
+            SELECT
+                asistencias_det.legajo,
+                COUNT(
+                    NULLIF(asistencias_det.estado, 0)
+                ) AS asistencias,
+                cte_eventos.total,
+                cte_eventos.puntos
+            FROM
+                asistencias_cab
+                JOIN asistencias_det ON asistencias_det.id_cab = asistencias_cab.id
+                JOIN cte_eventos ON cte_eventos.id = asistencias_cab.id_evento
+            WHERE
+                asistencias_cab.fecha_aceptada IS NOT NULL
+            GROUP BY
+                asistencias_det.legajo,
+                asistencias_cab.id_evento
+        )
     SELECT
         legajo,
         ROUND(
-            SUM( asistencias * 1.0 / total * puntos ), 2
+            SUM(asistencias * 1.0 / total * puntos),
+            2
         ) AS puntaje
-    FROM cte_puntos
-    GROUP BY cte_puntos.legajo
-    ORDER BY cte_puntos.legajo;
+    FROM
+        cte_puntos
+    GROUP BY
+        cte_puntos.legajo
+    ORDER BY
+        cte_puntos.legajo;
 
 -- Indices
 CREATE INDEX idx_personal_user ON personal(username);
