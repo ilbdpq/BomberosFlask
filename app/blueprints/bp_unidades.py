@@ -2,14 +2,17 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from scripts.unidades import Unidad
+from blueprints.bp_index import Login_Required
 
 bp = Blueprint('unidades', __name__)
 
 @bp.route('/', methods=['GET'])
+@Login_Required
 def Unidades():
     return render_template('datos/unidades.html', unidades=Unidad.Get_Unidades())
 
 @bp.route('/subir', methods=['POST'])
+@Login_Required
 def Subir():
     id = request.form['id']
     nombre = request.form['nombre']

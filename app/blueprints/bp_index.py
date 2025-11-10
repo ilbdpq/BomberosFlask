@@ -1,7 +1,18 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+from functools import wraps
 from scripts.personal import Bombero
+
+def Login_Required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user' not in session:
+            return redirect(url_for('index.Index'))
+        
+        return f(*args, **kwargs)
+    
+    return decorated_function
 
 bp = Blueprint('index', __name__)
 
@@ -51,8 +62,9 @@ def Login():
     else:
         flash('Usuario, legajo o DNI no encontrado')
         return redirect(url_for('index.Index'))
-    
+
 @bp.route('/logout', methods=['POST'])
+@Login_Required
 def Logout():
     session.clear()
     return redirect(url_for('index.Index'))

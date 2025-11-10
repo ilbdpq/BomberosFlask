@@ -9,13 +9,17 @@ from scripts.unidades import Unidad
 from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera
 from scripts.db import Init_DB
 
+from blueprints.bp_index import Login_Required
+
 bp = Blueprint('asistencias', __name__)
 
 @bp.route('/cargar/', methods=['GET'])
+@Login_Required
 def Index():
     return render_template('asistencias/cargar_planilla.html', eventos=Evento.Get_Eventos())
 
 @bp.route('/cargar/<evento_nombre>', methods=['POST'])
+@Login_Required
 def Nueva_Planilla(evento_nombre):
     evento = Evento.Get_Evento_By_Nombre(evento_nombre)
     id_cabecera = Add_Cabecera(evento.id)
@@ -24,6 +28,7 @@ def Nueva_Planilla(evento_nombre):
     return render_template('asistencias/cargar_planilla_detalle.html', cabecera=Asistencia_Cabecera.Get_By_ID(id_cabecera), evento=evento, bomberos=Bombero.Get_Bomberos(), unidades=Unidad.Get_Unidades())
 
 @bp.route('/cargar/detalles', methods=['POST'])
+@Login_Required
 def Cargar_Detalles():
     id_cabecera = int(request.form['id_cabecera'])
     cabecera = Asistencia_Cabecera.Get_By_ID(id_cabecera)
@@ -48,10 +53,12 @@ def Cargar_Detalles():
     return redirect(url_for('asistencias.Index'))
 
 @bp.route('/verificar/', methods=['GET'])
+@Login_Required
 def Verificar_Planillas():
     return render_template('asistencias/verificar_planillas.html', planillas=Asistencia_Cabecera.Get_Pendientes(), Evento=Evento, Bombero=Bombero, Unidad=Unidad)
 
 @bp.route('/verificar/si/<int:id>', methods=['POST'])
+@Login_Required
 def Aceptar_Planilla(id):
     cabecera = Asistencia_Cabecera.Get_By_ID(id)
     cabecera.fecha_aceptada = datetime.datetime.now().strftime('%Y-%m-%d')
@@ -62,6 +69,7 @@ def Aceptar_Planilla(id):
     return redirect(url_for('asistencias.Verificar_Planillas'))
 
 @bp.route('/verificar/no/<int:id>', methods=['POST'])
+@Login_Required
 def Rechazar_Planilla(id):
     cabecera = Asistencia_Cabecera.Get_By_ID(id)
     cabecera.Del()
@@ -70,10 +78,12 @@ def Rechazar_Planilla(id):
     return redirect(url_for('asistencias.Verificar_Planillas'))
 
 @bp.route('/ver/', methods=['GET'])
+@Login_Required
 def Ver_Planillas():
     return render_template('asistencias/ver_planillas.html', planillas=Asistencia_Cabecera.Get_Aceptadas(), Evento=Evento, Bombero=Bombero, Unidad=Unidad)
 
 @bp.route('/Test/2', methods=['POST'])
+@Login_Required
 def Limpiar():
     Init_DB(True)
     flash('Test finalizado.')
