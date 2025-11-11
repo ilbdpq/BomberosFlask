@@ -41,7 +41,7 @@ class Evento:
     def Get_Eventos():
         DB = Get_DB()
         eventos_data = DB.execute(
-            'SELECT * FROM eventos WHERE nombre != "Conducta"'
+            'SELECT * FROM eventos'
         ).fetchall()
         
         eventos = []

@@ -23,7 +23,8 @@
             {% for calificacion in calificaciones %}
                 <tr class="bomberos">
                     <td colspan="2">
-                        {{ calificacion.apellido_nombre }} ({{calificacion.legajo}})
+                        {% set bombero = Bombero.Get_Bombero_By_Legajo(calificacion.legajo) %}
+                        {{ bombero.apellido_nombre }} ({{bombero.legajo}})
                     </td>
 
                     {% if calificacion.puntaje < 3.33 %}
@@ -41,7 +42,7 @@
                     {% endif %}
                 </tr>
 
-                {% for evento in Calificacion.Get_Desglose_Mensual(calificacion.legajo) %}
+                {% for evento in Calificacion.Get_Desglose_Anual(calificacion.legajo) %}
                     <tr class="eventos">
                         <td>
                             {{ Evento.Get_Evento_By_ID(evento.id_evento).nombre }}

@@ -8,7 +8,7 @@
 {% block center %}
     <form action="{{ url_for('asistencias.Cargar_Detalles') }}" method="post">
         <table>
-            <col width="50%"><col width="25%"><col width="25%">
+            <col width="75%"><col width="25%">
             <thead>
                 <tr>
                     <th>
@@ -16,17 +16,12 @@
                         <input type="hidden" name="id_cabecera" value="{{ cabecera.id }}">
                     </th>
                     <th>
-                        Evento: {{ evento.nombre }}
-                        <input type="hidden" name="descripcion">
-                    </th>
-                    <th>
-                        {{ cabecera.fecha_creada }}
+                        {{ evento.nombre }}, {{ cabecera.fecha_creada }}
                     </th>
                 </tr>
                 <tr>
                     <th>Bombero</th>
-                    <th>Estado</th>
-                    <th>Unidad</th>
+                    <th>Conducta</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,38 +30,20 @@
                         <td>{{ bombero.apellido_nombre }}</td>
                         <td class="radio">
                             <input type="radio" id="{{bombero.legajo}}_presente" name="{{bombero.legajo}}_estado" value="1" required>
-                            <label for="{{bombero.legajo}}_presente">Presente</label>
-
-                            <input type="radio" id="{{bombero.legajo}}_licencia" name="{{bombero.legajo}}_estado" value="2" required>
-                            <label for="{{bombero.legajo}}_licencia">Licencia</label>
+                            <label for="{{bombero.legajo}}_presente">Suficiente</label>
 
                             <input type="radio" id="{{bombero.legajo}}_ausente" name="{{bombero.legajo}}_estado" value="0" required>
-                            <label for="{{bombero.legajo}}_ausente">Ausente</label>
-                        </td>
-                        <td>
-                            <select name="{{bombero.legajo}}_unidad" style="width: 100%;">
-                                <option value="{{ None }}" selected></option>
-                                {% for unidad in unidades %}
-                                    <option value="{{ unidad.id }}">{{ unidad.nombre }} ({{ unidad.patente }})</option>
-                                {% endfor %}
-                            </select>
+                            <label for="{{bombero.legajo}}_ausente">Deficiente</label>
                         </td>
                     </tr>
                 {% endfor %}
 
                 <tr>
-                    <th colspan="3">
+                    <th colspan="2">
                         <input type="submit" value="Cargar">
                     </th>
                 </tr>
             </tbody>
         </table>
     </form>
-{% endblock %}
-
-{% block right %}
-    <fieldset>
-        <legend>Descripción</legend>
-        <textarea name="descripcion_textarea" rows="10" oninput="actualizar_Descripcion()"></textarea>
-    </fieldset>
 {% endblock %}

@@ -14,8 +14,8 @@ def Mensual():
 
 @bp.route('/semestral', methods=['GET'])
 def Semestral():
-    return render_template('calificaciones/semestral.html', calificaciones=Calificacion.Get_Semestral(), Bombero=Bombero)
+    return render_template('calificaciones/semestral.html', calificaciones=Calificacion.Get_Semestral(), Calificacion=Calificacion, Bombero=Bombero, Evento=Evento)
 
 @bp.route('/anual', methods=['GET'])
 def Anual():
-    return render_template('calificaciones/anual.html', calificaciones=Calificacion.Get_Anual(), Bombero=Bombero)
+    return render_template('calificaciones/anual.html', calificaciones=Calificacion.Get_Anual(), Calificacion=Calificacion, Bombero=Bombero, Evento=Evento)

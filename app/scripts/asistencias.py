@@ -1,6 +1,7 @@
 import datetime
 
 from scripts.db import Get_DB
+from scripts.eventos import Evento
 
 class Asistencia_Cabecera:
     def __init__(self, id, id_evento, fecha_creada, fecha_aceptada = None, legajo_responsable = None, descripcion = None):
@@ -89,12 +90,41 @@ class Asistencia_Detalle:
         DB.execute('INSERT INTO asistencias_det (id_cab, legajo, id_unidad, estado) VALUES (?, ?, ?, ?)', (self.id_cab, self.legajo, self.id_unidad, self.estado))
         DB.commit()
         
-def Add_Cabecera(id_evento):
+def Add_Cabecera(id_evento):    
     fecha_creada = datetime.datetime.now().strftime('%Y-%m-%d')
     
     DB = Get_DB()
     CUR = DB.cursor()
+        
     CUR.execute('INSERT INTO asistencias_cab (id_evento, fecha_creada) VALUES (?, ?)', (id_evento, fecha_creada))
     DB.commit()
     
     return CUR.lastrowid
+
+def Verificar_Conducta_Mes():
+    '''True si se cargo la conducta del mes actual'''
+    
+    DB = Get_DB()
+    CUR = DB.cursor()
+    fecha_inicio = datetime.datetime.now().strftime('%Y-%m-01')
+    fecha_fin = datetime.datetime.now().strftime('%Y-%m-31')
+    
+    CUR.execute('''
+        SELECT
+            COUNT(*)
+        FROM
+            asistencias_cab
+        WHERE
+            id_evento = (
+                SELECT
+                    id
+                FROM
+                    eventos
+                WHERE
+                    nombre = "Conducta"
+            )
+            AND fecha_creada BETWEEN :fecha_inicio AND :fecha_fin;
+        ''', {'fecha_inicio': fecha_inicio, 'fecha_fin': fecha_fin})
+    row = CUR.fetchone()
+    
+    return row[0] > 0

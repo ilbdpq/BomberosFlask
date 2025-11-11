@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='personal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='datos.css') }}">
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 {% endblock %}
 
@@ -95,8 +95,12 @@
 
         <fieldset>
             <legend>Acciones</legend>
-            <input type="submit" value="Guardar">
-            <input type="button" value="Limpiar" onclick="form_Limpiar()">
+            <button onclick="form_Limpiar()">
+                <span>Limpiar</span>
+            </button>
+            <button type="submit">
+                <span>Guardar</span>
+            </button>
         </fieldset>
     </form>
 {% endblock %}

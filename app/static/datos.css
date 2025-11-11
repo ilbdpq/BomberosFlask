@@ -46,17 +46,6 @@ form {
     padding: 0.25rem;
 
     fieldset {
-        display: flex;
-        border: 0.1rem solid var(--color-fg-right);
-        border-bottom: 0.2rem solid var(--color-fg-right);
-        box-sizing: border-box;
-        flex-direction: row;
-
-        legend {
-            margin-left: 0.5rem;
-            color: color-mix(in srgb, var(--color-fg-right), black 50%);
-        }
-
         input {
             padding: 0.25rem;
             display: flex;
@@ -67,8 +56,11 @@ form {
             outline: none;
         }
 
-        input[type=submit]:hover, input[type=button]:hover {
+        button {
             cursor: pointer;
+        }
+
+        button:hover {
             background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%)
         }
     }

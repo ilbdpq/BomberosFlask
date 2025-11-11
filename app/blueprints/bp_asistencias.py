@@ -6,7 +6,7 @@ import datetime
 from scripts.personal import Bombero
 from scripts.eventos import Evento
 from scripts.unidades import Unidad
-from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera
+from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera, Verificar_Conducta_Mes
 from scripts.db import Init_DB
 
 from blueprints.bp_index import Login_Required
@@ -21,11 +21,23 @@ def Index():
 @bp.route('/cargar/<evento_nombre>', methods=['POST'])
 @Login_Required
 def Nueva_Planilla(evento_nombre):
-    evento = Evento.Get_Evento_By_Nombre(evento_nombre)
-    id_cabecera = Add_Cabecera(evento.id)
+    if evento_nombre != 'Conducta':
+        evento = Evento.Get_Evento_By_Nombre(evento_nombre)
+        id_cabecera = Add_Cabecera(evento.id)
+        
+        flash('Planilla de asistencias cargada correctamente.')
+        return render_template('asistencias/cargar_planilla_detalle.html', cabecera=Asistencia_Cabecera.Get_By_ID(id_cabecera), evento=evento, bomberos=Bombero.Get_Bomberos(), unidades=Unidad.Get_Unidades())
     
-    flash('Planilla de asistencias cargada correctamente.')
-    return render_template('asistencias/cargar_planilla_detalle.html', cabecera=Asistencia_Cabecera.Get_By_ID(id_cabecera), evento=evento, bomberos=Bombero.Get_Bomberos(), unidades=Unidad.Get_Unidades())
+    elif Verificar_Conducta_Mes():
+        flash('Ya se ha cargado la planilla de conducta para este mes.')
+        return redirect(url_for('asistencias.Index'))
+    
+    else:
+        evento = Evento.Get_Evento_By_Nombre(evento_nombre)
+        id_cabecera = Add_Cabecera(evento.id)
+        
+        flash('Planilla de conducta cargada correctamente.')
+        return render_template('asistencias/cargar_conducta.html', cabecera=Asistencia_Cabecera.Get_By_ID(id_cabecera), evento=evento, bomberos=Bombero.Get_Bomberos())
 
 @bp.route('/cargar/detalles', methods=['POST'])
 @Login_Required

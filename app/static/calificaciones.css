@@ -1,0 +1,55 @@
+#center {
+    table {
+        width: 100%;
+        padding: 0.5rem;
+        border-collapse: collapse;
+        font-family: sans-serif;
+        font-size: 1rem;
+
+        thead {
+            tr {
+                background-color: var(--color-fg-center);
+                text-align: left;
+
+                th {
+                    color: white;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 0.1rem solid var(--color-fg-center);
+            }
+
+            tr:last-of-type {
+                border-bottom: 0.2rem solid var(--color-fg-center);
+            }
+
+            tr.eventos {
+                background-color: color-mix(in srgb, var(--color-bg-center), white 85%);
+
+                td:first-of-type {
+                    padding-left: 3rem;
+                }
+            }
+            tr.bomberos {
+                font-weight: bold;
+
+                td:first-of-type {
+                    background-color: color-mix(in srgb, var(--color-bg-center), white 50%);
+                }
+            }
+
+            tr:hover {
+                background-color: color-mix(in srgb, var(--color-bg-center), white 75%);
+            }
+        }
+
+        tr {
+            th, td {
+                padding: 0.2rem;
+            }
+        }
+    }
+}
