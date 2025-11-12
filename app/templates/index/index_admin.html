@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
 {% block center %}
+    <fieldset>
+        <legend>Tests</legend>
+        <form action="{{ url_for('tests.Generar_Planillas') }}" method="post">
+            <button type="submit">
+                Generar asistencias
+            </button>
+        </form>
+        <form action="{{ url_for('tests.Generar_Planillas_Mes') }}" method="post">
+            <button type="submit">
+                Generar asistencias para este mes
+            </button>
+        </form>
+        <form action="{{ url_for('tests.Borrar_Planillas') }}" method="post">
+            <button type="submit">
+                Borrar asistencias
+            </button>
+        </form>
+    </fieldset>
 {% endblock %}
 
 {% block right %}

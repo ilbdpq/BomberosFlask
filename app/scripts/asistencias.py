@@ -104,8 +104,9 @@ class Asistencia_Detalle:
         DB.execute('INSERT INTO asistencias_det (id_cab, legajo, id_unidad, estado) VALUES (?, ?, ?, ?)', (self.id_cab, self.legajo, self.id_unidad, self.estado))
         DB.commit()
         
-def Add_Cabecera(id_evento):    
-    fecha_creada = datetime.datetime.now().strftime('%Y-%m-%d')
+def Add_Cabecera(id_evento, fecha_creada=None):
+    if not fecha_creada:
+        fecha_creada = datetime.datetime.now().strftime('%Y-%m-%d')
     
     DB = Get_DB()
     CUR = DB.cursor()

@@ -7,7 +7,6 @@ from scripts.personal import Bombero
 from scripts.eventos import Evento
 from scripts.unidades import Unidad
 from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera, Verificar_Conducta_Mes
-from scripts.db import Init_DB
 
 from blueprints.bp_index import Login_Required
 
