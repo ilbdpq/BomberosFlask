@@ -23,7 +23,7 @@
             {% for calificacion in calificaciones %}
                 <tr class="bomberos">
                     <td colspan="2">
-                        {{ calificacion.apellido_nombre }} ({{calificacion.legajo}})
+                        {{ calificacion.apellido_nombre }} ({{ calificacion.legajo }})
                     </td>
 
                     {% if calificacion.puntaje < 3.33 %}

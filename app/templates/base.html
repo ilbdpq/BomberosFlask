@@ -38,7 +38,7 @@
                     <a href="{{ url_for('calificaciones.Mensual') }}">📅 Mensual</a>
                     <a href="{{ url_for('calificaciones.Semestral') }}">📆 Semestral</a>
                     <a href="{{ url_for('calificaciones.Anual') }}">🗓️ Anual</a>
-                    <a href="">🗂️ Histórico</a>
+                    <a href="{{ url_for('calificaciones.Historico') }}">🗂️ Histórico</a>
                 </details>
     
                 <details open>
@@ -57,6 +57,8 @@
         </div>
     
         <div id="right">
+            {% block right %}{% endblock %}
+
             {% with mensajes = get_flashed_messages()  %}
                 {% if mensajes %}                
                     <fieldset class="flashes">
@@ -68,8 +70,6 @@
                     </fieldset>
                 {% endif %}
             {% endwith %}
-
-            {% block right %}{% endblock %}
         </div>
     </div>
 

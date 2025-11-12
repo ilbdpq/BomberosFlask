@@ -111,11 +111,16 @@
                     outline: none;
                     border: none;
                     cursor: pointer;
-
                     background-color: var(--color-fg-center);
-                    color: white;
-                    font-size: medium;
-                    width: 25%;
+                    flex-grow: 1;
+                    max-width: 9rem;
+                    padding: 0.25rem;
+
+                    span {
+                        color: white;
+                        font-size: medium;
+                        font-weight: bold;
+                    }
                 }
             }
         }

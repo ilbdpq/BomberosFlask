@@ -41,7 +41,7 @@
                     {% endif %}
                 </tr>
 
-                {% for evento in Calificacion.Get_Desglose_Anual(calificacion.legajo) %}
+                {% for evento in Calificacion.Get_Desglose_Historico(calificacion.legajo, fecha_inicio, fecha_fin) %}
                     <tr class="eventos">
                         <td>
                             {{ Evento.Get_Evento_By_ID(evento.id_evento).nombre }}
@@ -57,5 +57,21 @@
             {% endfor %}  
         </tbody>
     </table>
+{% endblock %}
 
+{% block right %}
+    <form action="{{ url_for('calificaciones.Historico') }}" method="get">
+        <fieldset>
+            <legend>Desde-Hasta</legend>
+
+            <div>
+                <input type="date" name="fecha_inicio" value="{{ fecha_inicio or '' }}" required>
+                <input type="date" name="fecha_fin" value="{{ fecha_fin or '' }}" required>
+            </div>
+
+            <button type="submit">
+                <span>Filtrar</span>
+            </button>
+        </fieldset>
+    </form>
 {% endblock %}

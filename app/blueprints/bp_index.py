@@ -8,6 +8,11 @@ def Login_Required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'user' not in session:
+            flash('Inicie sesión para acceder a esta página.')
+            return redirect(url_for('index.Index'))
+        
+        elif session['user']['permisos'] < 2:
+            flash('No tiene permisos para acceder a esta página.')
             return redirect(url_for('index.Index'))
         
         return f(*args, **kwargs)
@@ -64,7 +69,6 @@ def Login():
         return redirect(url_for('index.Index'))
 
 @bp.route('/logout', methods=['POST'])
-@Login_Required
 def Logout():
     session.clear()
     return redirect(url_for('index.Index'))

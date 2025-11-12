@@ -65,7 +65,7 @@
                                     {{ Unidad.Get_Unidad_By_ID(detalle.id_unidad).nombre }} ({{Unidad.Get_Unidad_By_ID(detalle.id_unidad).patente}})
                                 {% endif %}
                             </td>
-                            <td>
+                            <td style="text-align: center;">
                                 {% if detalle.estado == 1 %}
                                     ✔
                                 {% elif detalle.estado == 2 %}

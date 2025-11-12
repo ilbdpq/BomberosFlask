@@ -19,3 +19,15 @@ def Semestral():
 @bp.route('/anual', methods=['GET'])
 def Anual():
     return render_template('calificaciones/anual.html', calificaciones=Calificacion.Get_Anual(), Calificacion=Calificacion, Bombero=Bombero, Evento=Evento)
+
+@bp.route('/historico', methods=['GET'])
+def Historico():
+    fecha_inicio = request.args.get('fecha_inicio')
+    fecha_fin = request.args.get('fecha_fin')
+    
+    return render_template(
+        'calificaciones/historico.html',
+        calificaciones=Calificacion.Get_Historico(fecha_inicio, fecha_fin),
+        Calificacion=Calificacion, Bombero=Bombero, Evento=Evento,
+        fecha_inicio=fecha_inicio, fecha_fin=fecha_fin
+    )

@@ -9,6 +9,10 @@ table {
         tr {
             background-color: var(--color-fg-center);
             text-align: left;
+
+            th {
+                color: white;
+            }
         }
     }
 
@@ -69,7 +73,7 @@ table {
 
                 span {
                     color: color-mix(in srgb, var(--color-bg-right), black 50%);
-                    font-size: 1rem;
+                    font-weight: bold;
                 }
             }
 

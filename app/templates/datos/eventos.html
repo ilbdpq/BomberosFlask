@@ -46,8 +46,12 @@
 
         <fieldset>
             <legend>Acciones</legend>
-            <input type="submit" value="Guardar">
-            <input type="button" value="Limpiar" onclick="form_Limpiar()">
+            <button onclick="form_Limpiar()">
+                <span>Limpiar</span>
+            </button>
+            <button type="submit">
+                <span>Guardar</span>
+            </button>
         </fieldset>
     </form>
 {% endblock %}
