@@ -7,6 +7,7 @@
 
 {% block center %}
     <table>
+        <col width="15%"><col width="10%"><col width="10%"><col width="10%"><col width="10%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">
         <thead>
             <tr>
                 <th>Legajo</th>
@@ -18,7 +19,7 @@
                 <th>Nacimiento</th>
                 <th>Provincia</th>
                 <th>Lugar</th>
-                <th class="hidden">Permisos</th>
+                <th style="display: none;">Permisos</th>
             </tr>
         </thead>
 
@@ -34,7 +35,7 @@
                     <td>{{ Bombero.fecha_nacimiento }}</td>
                     <td>{{ Bombero.provincia }}</td>
                     <td>{{ Bombero.lugar }}</td>
-                    <td class="hidden">{{ Bombero.permisos }}</td>
+                    <td style="display: none;">{{ Bombero.permisos }}</td>
                 </tr>
             {% endfor %}
         </tbody>
