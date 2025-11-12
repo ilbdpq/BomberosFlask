@@ -1,35 +1,70 @@
-{% extends 'base_login.html' %}
-
-{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Bomberos / Iniciar sesión
+    </title>
+    
+    <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-{% endblock %}
+</head>
 
-{% block center %}
-    <form action="{{ url_for('index.Login') }}" method="post">
-        <fieldset>
-            <legend>Usuario</legend>
-            <input type="text" name="username">
-        </fieldset>
+<body>
+    <div id="top">
+        <h1><a href="{{ url_for('index.Index') }}">Bomberos Voluntarios de Totoras</a></h1>
+    </div>
 
-        <fieldset>
-            <legend>Contraseña</legend>
-            <input type="password" name="password">
-        </fieldset>
+    <div id="middle">
+        <div id="left"></div>
+    
+        <div id="center">
+            <form action="{{ url_for('index.Login') }}" method="post">
+                <fieldset>
+                    <legend>Usuario</legend>
+                    <input type="text" name="username">
+                </fieldset>
 
-        <fieldset>
-            <input type="submit" value="Ingresar">
-        </fieldset>
-    </form>
-{% endblock %}
+                <fieldset>
+                    <legend>Contraseña</legend>
+                    <input type="password" name="password">
+                </fieldset>
 
-{% block right %}
-    <fieldset>
-        <legend>Información</legend>
-        <p>
-            Por favor, ingrese sus credenciales.
-        </p>
-        <p>
-            Puede usar su nombre de usuario, su legajo, o su DNI.
-        </p>
-    </fieldset>
-{% endblock %}
+                <fieldset>
+                    <input type="submit" value="Ingresar">
+                </fieldset>
+            </form>
+        </div>
+    
+        <div id="right">
+            <fieldset>
+                <legend>Información</legend>
+                <span>
+                    Por favor, ingrese sus credenciales.
+                </span>
+                <span>
+                    Puede usar su nombre de usuario, su legajo, o su DNI.
+                </span>
+            </fieldset>
+
+            {% with mensajes = get_flashed_messages()  %}
+                {% if mensajes %}                
+                    <fieldset class="flashes">
+                        <legend>Mensajes</legend>
+
+                        {% for mensaje in mensajes %}
+                            <span>{{ mensaje }}</span>
+                        {% endfor %}
+                    </fieldset>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <div id="bottom">
+        <h2>IES №48, Martín Menna Castells © 2025</h2>
+    </div>
+</body>
+</html>

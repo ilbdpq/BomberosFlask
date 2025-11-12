@@ -94,9 +94,16 @@ def Rechazar_Planilla(id):
 def Ver_Planillas():
     return render_template('asistencias/ver_planillas.html', planillas=Asistencia_Cabecera.Get_Aceptadas(), Evento=Evento, Bombero=Bombero, Unidad=Unidad)
 
-@bp.route('/Test/2', methods=['POST'])
+@bp.route('/ver', methods=['GET'])
 @Login_Required
-def Limpiar():
-    Init_DB(True)
-    flash('Test finalizado.')
-    return redirect(url_for('asistencias.Index'))
+def Ver_Planillas_Fecha():
+    fecha_inicio = request.args.get('fecha_inicio')
+    fecha_fin = request.args.get('fecha_fin')
+    print('Rango recibido:', fecha_inicio, fecha_fin)
+    return render_template(
+        'asistencias/ver_planillas.html',
+        planillas=Asistencia_Cabecera.Get_Aceptadas_Rango(fecha_inicio, fecha_fin),
+        Evento=Evento,Bombero=Bombero, Unidad=Unidad,
+        fecha_inicio=fecha_inicio,
+        fecha_fin=fecha_fin
+    )

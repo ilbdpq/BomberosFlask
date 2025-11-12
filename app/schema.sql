@@ -70,7 +70,6 @@ CREATE VIEW calificaciones AS
                 JOIN eventos ON eventos.id = asistencias_cab.id_evento
             WHERE
                 asistencias_cab.fecha_aceptada IS NOT NULL
-                AND eventos.nombre != 'Conducta'
             GROUP BY
                 asistencias_cab.id_evento
         ),
@@ -93,17 +92,19 @@ CREATE VIEW calificaciones AS
                 asistencias_cab.id_evento
         )
     SELECT
-        legajo,
+        personal.apellido_nombre,
+        cte_puntos.legajo,
         ROUND(
             SUM(asistencias * 1.0 / total * puntos),
             2
         ) AS puntaje
     FROM
         cte_puntos
+    JOIN personal ON personal.legajo = cte_puntos.legajo
     GROUP BY
         cte_puntos.legajo
     ORDER BY
-        cte_puntos.legajo;
+        personal.apellido_nombre;
 
 -- Indices
 CREATE INDEX idx_personal_user ON personal(username);

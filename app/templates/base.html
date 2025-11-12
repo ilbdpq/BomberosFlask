@@ -57,17 +57,18 @@
         </div>
     
         <div id="right">
-                {% with mensajes = get_flashed_messages()  %}
-                    {% if mensajes %}                
-                        <fieldset class="flashes">
-                            <legend>Mensajes</legend>
-                            
-                            {% for mensaje in mensajes %}
-                                <span>{{ mensaje }}</span>
-                            {% endfor %}
-                        </fieldset>
-                    {% endif %}
-                {% endwith %}
+            {% with mensajes = get_flashed_messages()  %}
+                {% if mensajes %}                
+                    <fieldset class="flashes">
+                        <legend>Mensajes</legend>
+
+                        {% for mensaje in mensajes %}
+                            <span>{{ mensaje }}</span>
+                        {% endfor %}
+                    </fieldset>
+                {% endif %}
+            {% endwith %}
+
             {% block right %}{% endblock %}
         </div>
     </div>

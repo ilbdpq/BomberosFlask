@@ -172,5 +172,9 @@ body {
             margin-left: 0.5rem;
             color: color-mix(in srgb, var(--color-fg-right), black 50%);
         }
+
+        span {
+            padding: 0.5rem;
+        }
     }
 }

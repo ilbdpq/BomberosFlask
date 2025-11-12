@@ -1,15 +1,72 @@
-{% block center %}
-    <p>
-        Hola
-        Mundo
-        !
-    </p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Bomberos / {{ session['user']['username'] }}
+    </title>
 
-{% block right %}
-    <p>
-        Hola
-        Mundo
-        !
-    </p>
-{% endblock %}
+    <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <div id="top">
+        <h1><a href="{{ url_for('index.Index') }}">Bomberos Voluntarios de Totoras</a></h1>
+
+        <form action="{{ url_for('index.Logout') }}" method="post">
+            <input type="submit" value="❌">
+        </form>
+    </div>
+
+    <div id="middle">
+        <div id="left">
+            <div id="nav">
+                <details open>
+                    <summary>📑 Asistencias</summary>
+                    <a href="{{ url_for('asistencias.Index') }}">📝 Cargar Planilla</a>
+                    <a href="{{ url_for('asistencias.Ver_Planillas') }}">📄 Ver Planillas</a>
+                </details>
+
+                <details open>
+                    <summary>🗃️ Calificaciones</summary>
+                    <a href="{{ url_for('calificaciones.Mensual') }}">📅 Mensual</a>
+                    <a href="{{ url_for('calificaciones.Semestral') }}">📆 Semestral</a>
+                    <a href="{{ url_for('calificaciones.Anual') }}">🗓️ Anual</a>
+                    <a href="">🗂️ Histórico</a>
+                </details>
+            </div>
+    
+            {% block left %}{% endblock %}
+        </div>
+    
+        <div id="center">
+            {% block center %}{% endblock %}
+        </div>
+    
+        <div id="right">
+            {% with mensajes = get_flashed_messages()  %}
+                {% if mensajes %}                
+                    <fieldset class="flashes">
+                        <legend>Mensajes</legend>
+
+                        {% for mensaje in mensajes %}
+                            <span>{{ mensaje }}</span>
+                        {% endfor %}
+                    </fieldset>
+                {% endif %}
+            {% endwith %}
+
+            {% block right %}{% endblock %}
+        </div>
+    </div>
+
+    <div id="bottom">
+        <h2>IES №48, Martín Menna Castells © 2025</h2>
+    </div>
+</body>
+</html>

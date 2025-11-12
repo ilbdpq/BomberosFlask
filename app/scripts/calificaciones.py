@@ -402,3 +402,18 @@ class Calificacion:
                 'puntaje': row[4]
             })
         return desglose
+    
+    def Get_Historico():
+        DB = Get_DB()
+        CUR = DB.cursor()
+        
+        CUR.execute('SELECT * FROM calificaciones ORDER BY apellido_nombre')
+        
+        rows = CUR.fetchall()
+        historico = []
+        
+        for row in rows:
+            calificacion = Calificacion(row[1], row[2], row[3])
+            historico.append(calificacion)
+            
+        return historico

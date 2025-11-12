@@ -39,33 +39,43 @@ table {
     }
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-    padding: 0.25rem;
+#right {
+    form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5rem;
 
-    fieldset {
-        input {
-            padding: 0.25rem;
+        fieldset {
             display: flex;
-            width: 100%;
-            box-sizing: border-box;
-            background: none;
-            border: none;
-            outline: none;
-        }
+            flex-direction: row;
+            justify-content: space-around;
 
-        button {
-            cursor: pointer;
-        }
+            input {
+                padding: 0.25rem;
+                box-sizing: border-box;
+                background: none;
+                border: none;
+                outline: none;
+                flex-grow: 1;
+            }
 
-        button:hover {
-            background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%)
+            button {
+                cursor: pointer;
+                border: none;
+                outline: none;
+                background: none;
+                padding: 0.25rem;
+                flex-grow: 1;
+
+                span {
+                    color: color-mix(in srgb, var(--color-bg-right), black 50%);
+                    font-size: 1rem;
+                }
+            }
+
+            button:hover {
+                background-color: color-mix(in srgb, var(--color-bg-right), transparent 80%);
+            }
         }
     }
-}
-
-.hidden {
-    display: none;
 }

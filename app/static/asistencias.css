@@ -168,22 +168,36 @@
 
 #right {
     fieldset {
-        display: flex;
-        border: 0.1rem solid var(--color-fg-right);
-        border-bottom: 0.2rem solid var(--color-fg-right);
-        box-sizing: border-box;
-        padding: 0.5rem;
-
-        legend {
-            margin-left: 0.5rem;
-            color: color-mix(in srgb, var(--color-fg-right), black 50%);
-        }
+        flex-direction: column;
 
         textarea {
-        background: none;
-        outline: none;
-        border: none;
-        resize: none;
+            margin: 0.5rem;
+            background: none;
+            outline: none;
+            border: none;
+            resize: none;
+            flex-grow: 1;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        input, button {
+            background: none;
+            outline: none;
+            border: none;
+            flex-grow: 1;
+            padding: 0.25rem;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        input:hover, button:hover {
+            background-color: color-mix(in srgb, var(--color-fg-right), transparent 80%)
         }
     }
 }

@@ -67,11 +67,11 @@
                             </td>
                             <td>
                                 {% if detalle.estado == 1 %}
-                                    Asistió
+                                    ✔
                                 {% elif detalle.estado == 2 %}
-                                    Licencia
+                                    Lic.
                                 {% else %}
-                                    Ausente
+                                    ✘
                                 {% endif %}
                             </td>
                         </tr>
@@ -80,4 +80,21 @@
             </table>
         </form>
     {% endfor %}
+{% endblock %}
+
+{% block right %}
+    <form action="{{ url_for('asistencias.Ver_Planillas_Fecha') }}" method="get">
+        <fieldset>
+            <legend>Desde-Hasta</legend>
+
+            <div>
+                <input type="date" name="fecha_inicio" value="{{ fecha_inicio or '' }}" required>
+                <input type="date" name="fecha_fin" value="{{ fecha_fin or '' }}" required>
+            </div>
+
+            <button type="submit">
+                <span>Filtrar</span>
+            </button>
+        </fieldset>
+    </form>
 {% endblock %}

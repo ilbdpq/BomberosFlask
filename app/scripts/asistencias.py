@@ -62,6 +62,20 @@ class Asistencia_Cabecera:
             cabeceras.append(cabecera)
 
         return cabeceras
+    
+    def Get_Aceptadas_Rango(fecha_inicio, fecha_fin):
+        print('Fecha Inicio:', fecha_inicio, 'Fecha Fin:', fecha_fin)
+        DB = Get_DB()
+        CUR = DB.cursor()
+        CUR.execute('SELECT id, id_evento, fecha_creada, fecha_aceptada, legajo_responsable, descripcion FROM asistencias_cab WHERE fecha_aceptada NOT NULL AND fecha_creada BETWEEN ? AND ?', (fecha_inicio, fecha_fin))
+        rows = CUR.fetchall()
+
+        cabeceras = []
+        for row in rows:
+            cabecera = Asistencia_Cabecera(row[0], row[1], row[2], row[3], row[4], row[5])
+            cabeceras.append(cabecera)
+
+        return cabeceras
 
     def Set(self):
         DB = Get_DB()
