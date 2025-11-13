@@ -29,6 +29,11 @@ def Generar_Planillas():
             detalle = Asistencia_Detalle(None, id_cabecera, bombero.legajo, id_unidad, estado)
             detalle.Add()
             
+        cabecera = Asistencia_Cabecera.Get_By_ID(id_cabecera)
+        cabecera.fecha_aceptada = datetime.datetime.now().strftime('%Y-%m-%d')
+        cabecera.legajo_responsable = session['user']['legajo']
+        cabecera.Set()
+            
     flash('Planillas de asistencias generadas correctamente.')
     return redirect(url_for('index.Index'))
 
@@ -50,6 +55,11 @@ def Generar_Planillas_Mes():
             id_unidad = random.choice([unidad.id for unidad in Unidad.Get_Unidades()] + [None])
             detalle = Asistencia_Detalle(None, id_cabecera, bombero.legajo, id_unidad, estado)
             detalle.Add()
+        
+        cabecera = Asistencia_Cabecera.Get_By_ID(id_cabecera)
+        cabecera.fecha_aceptada = datetime.datetime.now().strftime('%Y-%m-%d')
+        cabecera.legajo_responsable = session['user']['legajo']
+        cabecera.Set()
             
     flash('Planillas de asistencias para el mes generadas correctamente.')
     return redirect(url_for('index.Index'))

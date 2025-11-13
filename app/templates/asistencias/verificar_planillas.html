@@ -15,7 +15,8 @@
                             Planilla #{{ planilla.id }}
                         </th>
                         <th>
-                            Evento: {{ Evento.Get_Evento_By_ID(planilla.id_evento).nombre }}
+                            {% set evento = Evento.Get_Evento_By_ID(planilla.id_evento) %}
+                            Evento: {{ evento.nombre }}
                         </th>
                         <th>
                             {{ planilla.fecha_creada }}
@@ -39,7 +40,12 @@
                             Unidad
                         </th>
                         <th>
-                            Asistencia
+                            {% if evento.nombre != 'Conducta' %}
+                                Asistencia
+                            {% else %}
+                                Conducta
+                            {% endif %}
+
                         </th>
                     </tr>
                 </thead>
@@ -55,13 +61,22 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if detalle.estado == 1 %}
-                                    Asistió
-                                {% elif detalle.estado == 2 %}
-                                    Licencia
+                                {% if evento.nombre != 'Conducta' %}
+                                    {% if detalle.estado == 1 %}
+                                        Asistió
+                                    {% elif detalle.estado == 2 %}
+                                        Licencia
+                                    {% else %}
+                                        Ausente
+                                    {% endif %}
                                 {% else %}
-                                    Ausente
+                                    {% if detalle.estado == 1 %}
+                                        Suficiente
+                                    {% else %}
+                                        Deficiente
+                                    {% endif %}
                                 {% endif %}
+
                             </td>
                         </tr>
                     {% endfor %}
