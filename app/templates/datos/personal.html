@@ -71,12 +71,12 @@
 
         <fieldset>
             <legend>Teléfono</legend>
-            <input type="text" name="telefono" value="" required>
+            <input type="tel" pattern="\d{2,4}[ -]?\d{6}" name="telefono" value="" title="Formato: 1234 567891 o 1234-567891" required>
         </fieldset>
 
         <fieldset>
             <legend>Nacimiento</legend>
-            <input type="text" name="fecha_nacimiento" value="" required>
+            <input type="date" name="fecha_nacimiento" value="" required>
         </fieldset>
 
         <fieldset>
@@ -91,7 +91,12 @@
 
         <fieldset>
             <legend>Permisos</legend>
-            <input type="text" name="permisos" value="" required>
+            <select name="permisos" required>
+                <option hidden disabled selected value></option>
+                <option value="0">Baja</option>
+                <option value="1">Usuario</option>
+                <option value="2">Admin</option>
+            </select>
         </fieldset>
 
         <fieldset>

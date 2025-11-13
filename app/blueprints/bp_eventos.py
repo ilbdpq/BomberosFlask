@@ -2,17 +2,17 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from scripts.eventos import Evento
-from blueprints.bp_index import Login_Required
+from blueprints.bp_index import Admin_Required
 
 bp = Blueprint('eventos', __name__)
 
 @bp.route('/', methods=['GET'])
-@Login_Required
+@Admin_Required
 def Eventos():
     return render_template('datos/eventos.html', eventos=Evento.Get_Eventos())
 
 @bp.route('/subir', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Subir():
     id = request.form['id']
     nombre = request.form['nombre']

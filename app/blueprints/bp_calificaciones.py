@@ -4,7 +4,6 @@ from flask import (
 from scripts.calificaciones import Calificacion
 from scripts.personal import Bombero
 from scripts.eventos import Evento
-from blueprints.bp_index import Login_Required
 
 bp = Blueprint('calificaciones', __name__)
 

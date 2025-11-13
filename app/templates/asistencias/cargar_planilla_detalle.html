@@ -1,4 +1,8 @@
-{% extends 'base.html' %}
+{% if session['user']['permisos'] > 1 %}
+    {% extends 'base.html' %}
+{% else %}
+    {% extends 'base_user.html' %}
+{% endif %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='asistencias.css') }}">

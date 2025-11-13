@@ -63,6 +63,15 @@ table {
                 flex-grow: 1;
             }
 
+            select {
+                padding: 0.25rem;
+                box-sizing: border-box;
+                background: none;
+                border: none;
+                outline: none;
+                flex-grow: 1;
+            }
+
             button {
                 cursor: pointer;
                 border: none;

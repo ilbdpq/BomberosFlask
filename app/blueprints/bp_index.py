@@ -4,7 +4,7 @@ from flask import (
 from functools import wraps
 from scripts.personal import Bombero
 
-def Login_Required(f):
+def Admin_Required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'user' not in session:
@@ -12,7 +12,22 @@ def Login_Required(f):
             return redirect(url_for('index.Index'))
         
         elif session['user']['permisos'] < 2:
-            flash('No tiene permisos para acceder a esta página.')
+            flash('No tiene permisos de administrador para acceder a esta página.')
+            return redirect(url_for('index.Index'))
+        
+        return f(*args, **kwargs)
+    
+    return decorated_function
+
+def User_Required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user' not in session:
+            flash('Inicie sesión para acceder a esta página.')
+            return redirect(url_for('index.Index'))
+        
+        elif session['user']['permisos'] < 1:
+            flash('No tiene permisos de usuario para acceder a esta página.')
             return redirect(url_for('index.Index'))
         
         return f(*args, **kwargs)

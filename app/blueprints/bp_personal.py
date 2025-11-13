@@ -2,17 +2,17 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from scripts.personal import Bombero
-from blueprints.bp_index import Login_Required
+from blueprints.bp_index import Admin_Required
 
 bp = Blueprint('personal', __name__)
 
 @bp.route('/', methods=['GET'])
-@Login_Required
+@Admin_Required
 def Personal():
     return render_template('datos/personal.html', personal=Bombero.Get_Bomberos())
 
 @bp.route('/subir', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Subir():
     legajo = request.form['legajo']
     dni = request.form['dni']

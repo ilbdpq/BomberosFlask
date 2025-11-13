@@ -5,7 +5,7 @@ from flask import Flask
 from flask import (
     Blueprint, g, redirect, render_template, request, session, url_for, send_from_directory
 )
-from blueprints.bp_index import Login_Required
+from blueprints.bp_index import Admin_Required, User_Required
 
 APP = Flask(__name__)
 
@@ -28,7 +28,8 @@ def Create_APP():
     APP.register_blueprint(bp_calificaciones.bp, url_prefix='/calificaciones')
     APP.register_blueprint(bp_tests.bp, url_prefix='/tests')
     
-    APP.add_template_global(Login_Required, 'Login_Required')
+    APP.add_template_global(Admin_Required, 'Admin_Required')
+    APP.add_template_global(User_Required, 'User_Required')
 
     return APP
 

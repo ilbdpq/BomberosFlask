@@ -12,7 +12,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Patente</th>
-                <th class="hidden">Estado</th>
+                <th style="display: none;">Estado</th>
             </tr>
         </thead>
 
@@ -22,7 +22,7 @@
                     <td>{{ Unidad.id }}</td>
                     <td>{{ Unidad.nombre }}</td>
                     <td>{{ Unidad.patente }}</td>
-                    <td class="hidden">{{ Unidad.estado }}</td>
+                    <td style="display: none;">{{ Unidad.estado }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -48,7 +48,11 @@
 
         <fieldset>
             <legend>Estado</legend>
-            <input type="text" name="estado" value="" required>
+            <select name="permisos" required>
+                <option hidden disabled selected value></option>
+                <option value="0">Inactiva</option>
+                <option value="1">Activa</option>
+            </select>
         </fieldset>
 
         <fieldset>

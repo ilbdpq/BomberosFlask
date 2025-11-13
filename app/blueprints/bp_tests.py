@@ -10,12 +10,12 @@ from scripts.unidades import Unidad
 from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera
 from scripts.db import Get_DB
 
-from blueprints.bp_index import Login_Required
+from blueprints.bp_index import Admin_Required
 
 bp = Blueprint('tests', __name__)
 
 @bp.route('/asistencias/generar', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Generar_Planillas():
     # Generar planillas con fechas aleatorias
     for _ in range(100):
@@ -38,7 +38,7 @@ def Generar_Planillas():
     return redirect(url_for('index.Index'))
 
 @bp.route('/asistencias/generar_mes', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Generar_Planillas_Mes():
     # Generar planillas para el mes actual
     hoy = datetime.date.today()
@@ -65,7 +65,7 @@ def Generar_Planillas_Mes():
     return redirect(url_for('index.Index'))
 
 @bp.route('/asistencias/borrar', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Borrar_Planillas():
     DB = Get_DB()
     CUR = DB.cursor()

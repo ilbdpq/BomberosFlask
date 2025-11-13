@@ -8,17 +8,17 @@ from scripts.eventos import Evento
 from scripts.unidades import Unidad
 from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera, Verificar_Conducta_Mes
 
-from blueprints.bp_index import Login_Required
+from blueprints.bp_index import Admin_Required, User_Required
 
 bp = Blueprint('asistencias', __name__)
 
 @bp.route('/cargar/', methods=['GET'])
-@Login_Required
+@User_Required
 def Index():
     return render_template('asistencias/cargar_planilla.html', eventos=Evento.Get_Eventos())
 
 @bp.route('/cargar/<evento_nombre>', methods=['POST'])
-@Login_Required
+@User_Required
 def Nueva_Planilla(evento_nombre):
     if evento_nombre != 'Conducta':
         evento = Evento.Get_Evento_By_Nombre(evento_nombre)
@@ -39,7 +39,7 @@ def Nueva_Planilla(evento_nombre):
         return render_template('asistencias/cargar_conducta.html', cabecera=Asistencia_Cabecera.Get_By_ID(id_cabecera), evento=evento, bomberos=Bombero.Get_Bomberos())
 
 @bp.route('/cargar/detalles', methods=['POST'])
-@Login_Required
+@User_Required
 def Cargar_Detalles():
     id_cabecera = int(request.form['id_cabecera'])
     cabecera = Asistencia_Cabecera.Get_By_ID(id_cabecera)
@@ -64,12 +64,12 @@ def Cargar_Detalles():
     return redirect(url_for('asistencias.Index'))
 
 @bp.route('/verificar/', methods=['GET'])
-@Login_Required
+@Admin_Required
 def Verificar_Planillas():
     return render_template('asistencias/verificar_planillas.html', planillas=Asistencia_Cabecera.Get_Pendientes(), Evento=Evento, Bombero=Bombero, Unidad=Unidad)
 
 @bp.route('/verificar/si/<int:id>', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Aceptar_Planilla(id):
     cabecera = Asistencia_Cabecera.Get_By_ID(id)
     cabecera.fecha_aceptada = datetime.datetime.now().strftime('%Y-%m-%d')
@@ -80,7 +80,7 @@ def Aceptar_Planilla(id):
     return redirect(url_for('asistencias.Verificar_Planillas'))
 
 @bp.route('/verificar/no/<int:id>', methods=['POST'])
-@Login_Required
+@Admin_Required
 def Rechazar_Planilla(id):
     cabecera = Asistencia_Cabecera.Get_By_ID(id)
     cabecera.Del()
