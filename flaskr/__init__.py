@@ -7,12 +7,12 @@ from flask import (
 )
 from blueprints.bp_index import Admin_Required, User_Required
 
-APP = Flask(__name__)
-
 def Create_APP():
+    APP = Flask(__name__, instance_relative_config=True)
+    
     APP.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE='databases/bomberos.db',
+        DATABASE=os.path.join(APP.instance_path, 'bomberos.db'),
         PERMANENT_SESSION_LIFETIME=datetime.timedelta(minutes=30)
     )
 

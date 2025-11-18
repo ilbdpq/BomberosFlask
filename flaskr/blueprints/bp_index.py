@@ -71,7 +71,8 @@ def Login():
                 'apellido_nombre': bombero.apellido_nombre,
                 'permisos': bombero.permisos,
             }
-            session.permanent = True  # Mantener la sesión activa
+            session['tema'] = 'color' # Tema por defecto
+            session.permanent = True # Mantener la sesión activa
             
             return redirect(url_for('index.Index'))
         
@@ -87,3 +88,15 @@ def Login():
 def Logout():
     session.clear()
     return redirect(url_for('index.Index'))
+
+@bp.route('/tema', methods=['POST'])
+def Tema():
+    current_tema = session.get('tema', 'color')
+    
+    if current_tema == 'color':
+        session['tema'] = 'bw'
+        
+    else:
+        session['tema'] = 'color'
+    
+    return redirect(request.referrer or url_for('index.Index'))

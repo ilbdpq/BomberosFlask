@@ -8,6 +8,13 @@
     </title>
 
     <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+    
+    {% if session['tema'] == 'color' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='tema-color.css') }}">
+    {% elif session['tema'] == 'bw' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='tema-bw.css') }}">
+    {% endif %}
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 
     {% block head %}
@@ -18,9 +25,15 @@
     <div id="top">
         <h1><a href="{{ url_for('index.Index') }}">Bomberos Voluntarios de Totoras</a></h1>
 
-        <form action="{{ url_for('index.Logout') }}" method="post">
-            <input type="submit" value="❌">
-        </form>
+        <div>
+            <form action="{{ url_for('index.Tema') }}" method="post">
+                <input type="submit" value="🖼️">
+            </form>
+    
+            <form action="{{ url_for('index.Logout') }}" method="post">
+                <input type="submit" value="❌">
+            </form>
+        </div>
     </div>
 
     <div id="middle">

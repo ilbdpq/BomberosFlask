@@ -2,12 +2,10 @@ import sqlite3
 import click
 from flask import g, current_app as APP
 
-DATABASE = 'databases/bomberos.db'
-
 def Get_DB():
     if 'db' not in g:
         g.db = sqlite3.connect(
-            DATABASE,
+            APP.config['DATABASE'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row

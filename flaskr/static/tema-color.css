@@ -1,0 +1,22 @@
+:root {
+    --color-bg-body: #EEEEEEAA;
+
+    --color-fg-top: #1D3557;
+    --color-bg-top: #1D3557DD;
+    --color-text-top: #EEE;
+
+    --color-fg-middle: #AE2012;
+    --color-bg-middle: #AE201277;
+
+    --color-fg-bottom: #A8DADC;
+    --color-bg-bottom: #A8DADC77;
+
+    --color-fg-left: #BB3E03;
+    --color-bg-left: #BB3E03;
+    
+    --color-fg-center: #CA6702;
+    --color-bg-center: #CA6702;
+
+    --color-fg-right: #EE9B00;
+    --color-bg-right: #EE9B00;
+}
