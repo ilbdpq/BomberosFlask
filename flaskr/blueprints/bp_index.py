@@ -91,9 +91,9 @@ def Logout():
 
 @bp.route('/tema', methods=['POST'])
 def Tema():
-    current_tema = session.get('tema', 'color')
+    tema_actual = session.get('tema', 'color')
     
-    if current_tema == 'color':
+    if tema_actual == 'color':
         session['tema'] = 'bw'
         
     else:
