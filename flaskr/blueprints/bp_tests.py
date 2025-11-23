@@ -75,3 +75,12 @@ def Borrar_Planillas():
     
     flash('Todas las planillas de asistencias han sido borradas.')
     return redirect(url_for('index.Index'))
+
+@bp.route('/database/reset', methods=['POST'])
+@Admin_Required
+def Reset_Database():
+    from ..scripts import db
+    db.Init_DB(True)
+    
+    flash('La base de datos ha sido reiniciada.')
+    return redirect(url_for('index.Index'))

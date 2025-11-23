@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS eventos;
 DROP TABLE IF EXISTS conductas;
 DROP TABLE IF EXISTS asistencias_cab;
 DROP TABLE IF EXISTS asistencias_det;
+DROP VIEW IF EXISTS calificaciones;
 
 -- Tabla personal
 CREATE TABLE personal (

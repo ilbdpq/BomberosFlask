@@ -61,6 +61,7 @@ class Calificacion:
             FROM
                 cte_puntos
             JOIN personal ON personal.legajo = cte_puntos.legajo
+            WHERE personal.permisos != 0
             GROUP BY
                 cte_puntos.legajo
             ORDER BY
@@ -195,6 +196,7 @@ class Calificacion:
             FROM
                 cte_puntos
             JOIN personal ON personal.legajo = cte_puntos.legajo
+            WHERE personal.permisos != 0
             GROUP BY
                 cte_puntos.legajo
             ORDER BY
@@ -328,6 +330,7 @@ class Calificacion:
             FROM
                 cte_puntos
             JOIN personal ON personal.legajo = cte_puntos.legajo
+            WHERE personal.permisos != 0
             GROUP BY
                 cte_puntos.legajo
             ORDER BY

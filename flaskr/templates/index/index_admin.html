@@ -18,6 +18,11 @@
                 Borrar asistencias
             </button>
         </form>
+        <form action="{{ url_for('tests.Reset_Database') }}" method="post">
+            <button type="submit">
+                Reiniciar base de datos
+            </button>
+        </form>
     </fieldset>
 {% endblock %}
 
