@@ -132,6 +132,30 @@ body {
     border-top: 0.5rem solid var(--color-fg-center);
     background-color: color-mix(in srgb, var(--color-bg-center), transparent 80%);
     padding: 0.5rem;
+
+    fieldset {
+        display: flex;
+        border: 0.1rem solid var(--color-fg-center);
+        border-bottom: 0.2rem solid var(--color-fg-center);
+        box-sizing: border-box;
+        flex-direction: row;
+        margin-bottom: 0.5rem;
+        column-gap: 0.25rem;
+        padding: 0.25rem;
+
+        legend {
+            margin-left: 0.5rem;
+            color: color-mix(in srgb, var(--color-fg-center), black 50%);
+        }
+
+        button {
+            padding: 0.25rem;
+            background: none;
+            outline: none;
+            border: 0.1rem solid var(--color-fg-center);
+            cursor: pointer;
+        }
+    }
 }
 
 #right {

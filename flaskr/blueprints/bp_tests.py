@@ -18,9 +18,9 @@ bp = Blueprint('tests', __name__)
 @Admin_Required
 def Generar_Planillas():
     # Generar planillas con fechas aleatorias
-    for _ in range(100):
+    for _ in range(10):
         id_evento = random.randint(1, 4)
-        fecha_creada = datetime.date(random.randint(2024, 2025), random.randint(1, 6), random.randint(1, 28))
+        fecha_creada = datetime.date(2025, random.randint(1, 12), random.randint(1, 28))
         id_cabecera = Add_Cabecera(id_evento, fecha_creada.strftime('%Y-%m-%d'))
         
         for bombero in Bombero.Get_Bomberos():
