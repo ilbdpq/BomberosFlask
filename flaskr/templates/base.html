@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='tema-color.css') }}">
     {% elif session['tema'] == 'bw' %}
         <link rel="stylesheet" href="{{ url_for('static', filename='tema-bw.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='tema-color.css') }}">
     {% endif %}
     
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">

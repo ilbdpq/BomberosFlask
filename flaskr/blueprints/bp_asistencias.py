@@ -97,6 +97,12 @@ def Ver_Planillas_Fecha():
     fecha_inicio = request.args.get('fecha_inicio')
     fecha_fin = request.args.get('fecha_fin')
     
+    if not fecha_inicio:
+        fecha_inicio = datetime.datetime.now().strftime('%Y-%m-%d')
+    
+    if not fecha_fin:
+        fecha_fin = fecha_inicio
+    
     return render_template(
         'asistencias/ver_planillas.html',
         planillas=Asistencia_Cabecera.Get_Aceptadas_Rango(fecha_inicio, fecha_fin),
