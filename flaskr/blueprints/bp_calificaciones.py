@@ -2,9 +2,9 @@ import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from scripts.calificaciones import Calificacion
-from scripts.personal import Bombero
-from scripts.eventos import Evento
+from ..scripts.calificaciones import Calificacion
+from ..scripts.personal import Bombero
+from ..scripts.eventos import Evento
 
 bp = Blueprint('calificaciones', __name__)
 

@@ -1,4 +1,4 @@
-from scripts.db import Get_DB
+from .db import Get_DB
 
 class Evento:
     def __init__(self, id, nombre, puntos):

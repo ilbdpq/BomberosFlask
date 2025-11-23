@@ -1,8 +1,8 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from scripts.personal import Bombero
-from blueprints.bp_index import Admin_Required
+from ..scripts.personal import Bombero
+from .bp_index import Admin_Required
 
 bp = Blueprint('personal', __name__)
 

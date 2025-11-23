@@ -3,12 +3,12 @@ from flask import (
 )
 import datetime
 
-from scripts.personal import Bombero
-from scripts.eventos import Evento
-from scripts.unidades import Unidad
-from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera, Verificar_Conducta_Mes
+from ..scripts.personal import Bombero
+from ..scripts.eventos import Evento
+from ..scripts.unidades import Unidad
+from ..scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera, Verificar_Conducta_Mes
 
-from blueprints.bp_index import Admin_Required, User_Required
+from .bp_index import Admin_Required, User_Required
 
 bp = Blueprint('asistencias', __name__)
 

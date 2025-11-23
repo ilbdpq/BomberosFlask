@@ -1,8 +1,8 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from scripts.unidades import Unidad
-from blueprints.bp_index import Admin_Required
+from ..scripts.unidades import Unidad
+from .bp_index import Admin_Required
 
 bp = Blueprint('unidades', __name__)
 

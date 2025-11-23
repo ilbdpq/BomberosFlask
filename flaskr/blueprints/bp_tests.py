@@ -4,13 +4,13 @@ from flask import (
 import datetime
 import random
 
-from scripts.personal import Bombero
-from scripts.eventos import Evento
-from scripts.unidades import Unidad
-from scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera
-from scripts.db import Get_DB
+from ..scripts.personal import Bombero
+from ..scripts.eventos import Evento
+from ..scripts.unidades import Unidad
+from ..scripts.asistencias import Asistencia_Cabecera, Asistencia_Detalle, Add_Cabecera
+from ..scripts.db import Get_DB
 
-from blueprints.bp_index import Admin_Required
+from .bp_index import Admin_Required
 
 bp = Blueprint('tests', __name__)
 

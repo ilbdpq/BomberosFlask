@@ -1,4 +1,4 @@
-from scripts.db import Get_DB
+from .db import Get_DB
 
 class Unidad:
     def __init__(self, id, nombre, patente, estado):

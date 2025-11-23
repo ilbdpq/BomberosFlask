@@ -1,4 +1,4 @@
-from scripts.db import Get_DB
+from .db import Get_DB
 
 class Bombero:
     def __init__(self, legajo, dni, username, password, apellido_nombre, telefono, fecha_nacimiento, provincia, lugar, permisos):

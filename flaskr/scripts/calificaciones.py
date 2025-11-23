@@ -1,7 +1,7 @@
 import datetime
 
-from scripts.db import Get_DB
-from scripts.eventos import Evento
+from .db import Get_DB
+from .eventos import Evento
 
 class Calificacion:
     def __init__(self, apellido_nombre, legajo, puntaje):

@@ -1,7 +1,7 @@
 import datetime
 
-from scripts.db import Get_DB
-from scripts.eventos import Evento
+from .db import Get_DB
+from .eventos import Evento
 
 class Asistencia_Cabecera:
     def __init__(self, id, id_evento, fecha_creada, fecha_aceptada = None, legajo_responsable = None, descripcion = None):

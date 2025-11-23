@@ -2,7 +2,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from functools import wraps
-from scripts.personal import Bombero
+from ..scripts.personal import Bombero
 
 def Admin_Required(f):
     @wraps(f)
